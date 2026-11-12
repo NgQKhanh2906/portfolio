@@ -144,7 +144,7 @@ Không sử dụng âm thanh trong MVP. Lý do: âm thanh tự phát gây khó c
 
 ## 6. Dữ liệu mẫu (Seed Data)
 
-### 6.1. Cấu hình trang - `src/lib/site-config.ts`
+### 6.1. Cấu hình trang - `src/data/site-config.ts` (và re-export tại `src/lib/site-config.ts`)
 
 ```ts
 export const siteConfig = {

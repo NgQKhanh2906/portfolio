@@ -164,18 +164,18 @@ sequenceDiagram
         ViewAPI-->>Page: 404 Not Found
     end
 
-    ViewAPI->>Crypto: Tạo khóa chống trùng: SHA-256(IP + slug + VIEW_SALT)
+    ViewAPI->>Crypto: Tạo mã băm: ip_hash = SHA-256(IP + VIEW_SALT)
     Crypto-->>ViewAPI: Chuỗi Hash định danh (không lộ IP thô)
     
-    ViewAPI->>Redis: Kiểm tra khóa dedup: GET view_dedup:<hash>
+    ViewAPI->>Redis: Kiểm tra khóa dedup: GET view_dedup:<slug>:<ip_hash>
     alt Khóa đã tồn tại (Đã đọc trong vòng 24h)
         Redis-->>ViewAPI: Khóa tồn tại
-        ViewAPI->>Redis: Lấy số lượt xem hiện tại: GET views:<slug>
+        ViewAPI->>Redis: Lấy số lượt xem hiện tại: GET views:project:<slug>
         Redis-->>ViewAPI: Giá trị view hiện tại
     else Chưa tồn tại (Lượt đọc mới hợp lệ)
         Redis-->>ViewAPI: Khóa không tồn tại (null)
-        ViewAPI->>Redis: Ghi nhận: SET view_dedup:<hash> 1 EX 86400 (TTL 24h)
-        ViewAPI->>Redis: Tăng số lượt xem: INCR views:<slug>
+        ViewAPI->>Redis: Ghi nhận: SET view_dedup:<slug>:<ip_hash> 1 EX 86400 (TTL 24h)
+        ViewAPI->>Redis: Tăng số lượt xem: INCR views:project:<slug>
         Redis-->>ViewAPI: Giá trị view mới sau khi tăng
     end
 
@@ -248,6 +248,7 @@ sequenceDiagram
   - Sử dụng cơ chế Session lưu tại Database thông qua Drizzle Adapter. Bảng `sessions` lưu trữ token định danh phiên làm việc.
   - Cookie phiên được gắn các cờ bảo mật bắt buộc: `HttpOnly`, `Secure` (trên môi trường production), `SameSite=Lax`.
   - Thông tin user gắn kèm trong session gồm: `id` (UUID), `githubId` (số nguyên), `username`, `name`, `avatarUrl`, `isAdmin`.
+  - *Lưu ý tích hợp Auth.js với custom schema:* Trong cấu hình GitHub Provider (`src/lib/auth.ts`), bắt buộc khai báo hàm `profile(profile)` ánh xạ tường minh `github_id: profile.id`, `username: profile.login`, `is_admin: Number(profile.id) === Number(process.env.ADMIN_GITHUB_ID)` để Drizzle Adapter ghi đúng và đủ các trường NOT NULL của bảng `users`.
 
 ### 4.2. Cơ chế Phân quyền (Authorization)
 

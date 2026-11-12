@@ -79,7 +79,7 @@ Tài liệu này mô tả chính xác hệ thống phải làm gì. Mỗi yêu c
 | Mã | Yêu cầu |
 | :--- | :--- |
 | FR-05-01 | Khi trang Case Study được hiển thị ở client, gọi `POST /api/views/[slug]` một lần. |
-| FR-05-02 | Server tính khóa chống trùng từ SHA-256 của (IP + slug + `VIEW_SALT`), không lưu IP thô. Nếu khóa chưa tồn tại thì tăng bộ đếm và đặt khóa với TTL 24 giờ. |
+| FR-05-02 | Server tính mã băm `ip_hash = SHA-256(IP + VIEW_SALT)`, kiểm tra khóa chống trùng `view_dedup:<slug>:<ip_hash>` với TTL 24 giờ (không lưu IP thô). Nếu khóa chưa tồn tại thì tăng bộ đếm `views:project:<slug>` và đặt khóa với TTL 24 giờ. |
 | FR-05-03 | Response trả về tổng lượt xem hiện tại; UI hiển thị dạng "1,234 lượt xem" (định dạng `vi-VN`). |
 | FR-05-04 | Khi Redis lỗi, không hiển thị số lượt xem (ẩn phần tử), không ném lỗi ra giao diện. |
 

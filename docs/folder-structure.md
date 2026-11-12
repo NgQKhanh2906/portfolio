@@ -236,6 +236,7 @@ portfolio/
 │   │   ├── experience.ts
 │   │   ├── lab-components.ts
 │   │   ├── profile.ts
+│   │   ├── site-config.ts
 │   │   └── skills.ts
 │   ├── hooks/
 │   │   ├── use-copy-to-clipboard.ts
@@ -475,7 +476,7 @@ Dữ liệu tĩnh, có kiểu TypeScript, không chứa logic. Nội dung ở `a
 | `moderation.ts` | Không | Danh sách từ khóa chặn và hàm `containsBlockedKeyword(text)` (bỏ dấu tiếng Việt, không phân biệt hoa thường). |
 | `rate-limit.ts` | Có | Khởi tạo các limiter của `@upstash/ratelimit` theo BR-02, BR-07, BR-12; hàm `checkRateLimit(limiter, key)` trả về `{ success, retryAfterSeconds }`; khi Redis lỗi thì chính sách xử lý được định nghĩa trong `architecture.md`. |
 | `redis.ts` | Có | Khởi tạo client Upstash Redis từ biến môi trường. |
-| `site-config.ts` | Không | Thông tin trang (`assets.md` mục 6.1). Chỉ chứa dữ liệu công khai. |
+| `site-config.ts` | Không | Thông tin cấu hình trang (`assets.md` mục 6.1). Đặt tại `src/data/site-config.ts`, re-export tại `src/lib/site-config.ts` để đảm bảo tương thích. |
 | `utils.ts` | Không | `cn()` gộp class (`clsx` + `tailwind-merge`), `removeVietnameseTones()`, `formatNumber()`. |
 | `views.ts` | Có | `incrementView(slug, ipHash)`, `getViews(slug)` dùng Redis (FR-05). |
 

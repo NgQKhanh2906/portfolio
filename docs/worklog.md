@@ -19,13 +19,13 @@ Tài liệu này theo dõi tiến độ thực thi thực tế của toàn bộ 
 
 | Mã Task | Tên Hạng mục Công việc | Trạng thái | Ngày cập nhật | Ghi chú Kỹ thuật / Lỗi Phát sinh |
 | :--- | :--- | :--- | :--- | :--- |
-| `TASK-01` | Khởi tạo Dự án Next.js 14+ App Router và Cấu hình Tooling | `TODO` | - | Chưa bắt đầu |
-| `TASK-02` | Thiết lập Design Tokens, Phông chữ và CSS Toàn cục | `TODO` | - | Chưa bắt đầu |
-| `TASK-03` | Triển khai Cơ chế Chuyển đổi Giao diện (Theme Provider & Script Chống Nháy) | `TODO` | - | Chưa bắt đầu |
-| `TASK-04` | Xây dựng Thư viện Thành phần UI Cơ bản (Primitive UI Components) | `TODO` | - | Chưa bắt đầu |
-| `TASK-05` | Xây dựng Khung Bố cục Chính (Header, Footer, Navigation, Skip Link) | `TODO` | - | Chưa bắt đầu |
-| `TASK-06` | Xây dựng Các Section Trang chủ (Hero, About, Skills, Journey) | `TODO` | - | Chưa bắt đầu |
-| `TASK-07` | Triển khai Bảng lệnh Điều khiển Nhanh (Command Palette `Ctrl + K`) | `TODO` | - | Chưa bắt đầu |
+| `TASK-01` | Khởi tạo Dự án Next.js 14+ App Router và Cấu hình Tooling | `DONE` | 11/11/2026 | Next.js 14.2.24, TypeScript 5.7 strict, pnpm 9, ESLint, Prettier, Vitest jsdom pass 100% |
+| `TASK-02` | Thiết lập Design Tokens, Phông chữ và CSS Toàn cục | `DONE` | 11/11/2026 | Inter & JetBrains Mono qua next/font/google, Design Tokens 3 lớp tại globals.css |
+| `TASK-03` | Triển khai Cơ chế Chuyển đổi Giao diện (Theme Provider & Script Chống Nháy) | `DONE` | 11/11/2026 | ThemeScript inline chặn nháy theme (zero flash), ThemeProvider, ThemeToggle dropdown |
+| `TASK-04` | Xây dựng Thư viện Thành phần UI Cơ bản (Primitive UI Components) | `DONE` | 11/11/2026 | Tự viết Button, IconButton, Badge, Card, Kbd, Skeleton, Spinner, EmptyState, FieldError |
+| `TASK-05` | Xây dựng Khung Bố cục Chính (Header, Footer, Navigation, Skip Link) | `DONE` | 11/11/2026 | SkipLink, Container, SectionHeading, SiteHeader (sticky blur), MobileNav sheet, SiteFooter |
+| `TASK-06` | Xây dựng Các Section Trang chủ (Hero, About, Skills, Journey) | `DONE` | 12/11/2026 | Phân rã Server Components thành công (hero, about, skills, timeline, projects, telemetry). First Load JS đạt 94.1 kB (< 150 kB) |
+| `TASK-07` | Triển khai Bảng lệnh Điều khiển Nhanh (Command Palette `Ctrl + K`) | `DONE` | 12/11/2026 | Command Palette hoàn thiện bằng cmdk, hỗ trợ tìm kiếm điều hướng, đổi theme, sao chép email, phím tắt và WAI-ARIA combobox |
 | `TASK-08` | Triển khai Widget Giám sát Hoạt động Kỹ thuật (Live Telemetry Widget) | `TODO` | - | Chưa bắt đầu |
 | `TASK-09` | Xây dựng Bộ xử lý Nội dung MDX và Trích xuất Dữ liệu Dự án | `TODO` | - | Chưa bắt đầu |
 | `TASK-10` | Xây dựng Trang Danh sách Dự án và Bộ lọc Công nghệ Đa tiêu chí | `TODO` | - | Chưa bắt đầu |
@@ -52,4 +52,7 @@ Tài liệu này theo dõi tiến độ thực thi thực tế của toàn bộ 
 
 Khu vực này dùng để ghi lại các giải pháp kỹ thuật cụ thể khi xử lý các vấn đề thực tế phát sinh trong quá trình triển khai các Task:
 
-*(Hiện tại chưa có ghi chú phát sinh. Sẽ được cập nhật khi bắt đầu thực thi `TASK-01`)*
+### Ghi chú Kỹ thuật ngày 12/11/2026:
+- **Hoàn thành TASK-06 (Phân rã Server Components trang chủ):** Đã module hóa `src/app/page.tsx` thành 6 Server Components chuyên trách (`hero.tsx`, `about-section.tsx`, `skills-section.tsx`, `skill-group.tsx`, `experience-timeline.tsx`, `timeline-item.tsx`, `featured-projects.tsx`, `telemetry-preview.tsx`). Kết quả First Load JS cho trang chủ đo được sau `next build` chỉ là 94.1 kB, tối ưu sâu so với chỉ tiêu 150 kB.
+- **Bổ sung Unit Tests:** Tạo bộ kiểm thử đơn vị cho Primitive UI (`button.test.tsx`, `badge.test.tsx`, `card.test.tsx`, `command-trigger.test.tsx`), toàn bộ 13/13 test cases đều pass 100% trên Vitest jsdom.
+- **Hoàn thành TASK-07 (Command Palette):** Tích hợp `cmdk` cùng các nhóm lệnh điều hướng, đổi theme, thao tác sao chép email kèm phản hồi clipboard và phím tắt `Ctrl + K`. Đạt chuẩn accessibility ARIA combobox.

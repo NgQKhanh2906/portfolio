@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #FAFAF9;
+    --color-surface: #FFFFFF;
+    --color-surface-2: #F4F4F2;
+    --color-border: #E4E4E0;
+    --color-border-strong: #C9C9C3;
+    --color-text: #141414;
+    --color-text-muted: #5C5C57;
+    --color-text-subtle: #8A8A84;
+    --color-accent: #0B7A5E;
+    --color-accent-hover: #08634C;
+    --color-accent-fg: #FFFFFF;
+    --color-accent-soft: #E3F4EE;
+    --color-focus: #0B7A5E;
+
+    --color-success: #15803D;
+    --color-success-soft: #E7F6EC;
+    --color-warning: #B45309;
+    --color-warning-soft: #FDF3E1;
+    --color-danger: #B91C1C;
+    --color-danger-soft: #FBE9E9;
+    --color-info: #1D4ED8;
+    --color-info-soft: #E8EEFC;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+
+    --duration-fast: 120ms;
+    --duration-base: 200ms;
+    --duration-slow: 320ms;
+  }
+
+  .dark {
+    --color-bg: #0B0B0C;
+    --color-surface: #131316;
+    --color-surface-2: #1B1B1F;
+    --color-border: #27272B;
+    --color-border-strong: #3A3A40;
+    --color-text: #EDEDEF;
+    --color-text-muted: #A0A0A8;
+    --color-text-subtle: #6E6E76;
+    --color-accent: #2DD4A3;
+    --color-accent-hover: #5EE3BB;
+    --color-accent-fg: #04241B;
+    --color-accent-soft: #0F2E25;
+    --color-focus: #2DD4A3;
+
+    --color-success: #4ADE80;
+    --color-success-soft: #10261A;
+    --color-warning: #FBBF24;
+    --color-warning-soft: #2A2010;
+    --color-danger: #F87171;
+    --color-danger-soft: #2C1414;
+    --color-info: #60A5FA;
+    --color-info-soft: #111D33;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* Accessibility Focus Rings */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .hero-grid-pattern {
+    background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}

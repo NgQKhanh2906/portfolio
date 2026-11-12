@@ -108,6 +108,8 @@ Lưu trữ thông tin người dùng được định danh khi đăng nhập th�
 | `created_at` | `timestamptz` | NOT NULL | `CURRENT_TIMESTAMP` | Thời điểm bản ghi được tạo |
 | `updated_at` | `timestamptz` | NOT NULL | `CURRENT_TIMESTAMP` | Thời điểm cập nhật thông tin lần cuối |
 
+> **Lưu ý tích hợp Auth.js Drizzle Adapter:** Do bảng `users` có 2 trường mở rộng `github_id` và `username` mang ràng buộc `NOT NULL`, cấu hình GitHub Provider trong `src/lib/auth.ts` phải sử dụng callback `profile(profile)` để map trực tiếp `github_id` (từ `profile.id`) và `username` (từ `profile.login`), đảm bảo Drizzle Adapter không gặp lỗi thiếu trường bắt buộc khi người dùng đăng nhập lần đầu.
+
 ### 3.2. Bảng `accounts`
 Quản lý liên kết tài khoản OAuth của người dùng với nhà cung cấp dịch vụ xác thực (GitHub Provider). Tuân thủ nghiêm ngặt schema của Auth.js.
 

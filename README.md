@@ -113,27 +113,49 @@ Danh sách đầy đủ biến môi trường: `docs/github-setup.md` (Đợt 3)
 
 ---
 
-## 6. Bộ tài liệu dự án
+## 6. Cấu trúc thư mục nền tảng
 
-| File | Nội dung | Đợt |
-| :--- | :--- | :--- |
-| [README.md](README.md) | Tổng quan, khởi chạy nhanh | 1 |
-| [docs/product.md](docs/product.md) | Tầm nhìn, persona, USP, phạm vi MVP | 1 |
-| [docs/spec.md](docs/spec.md) | Đặc tả chức năng, user flow, business rule | 1 |
-| [docs/design-system.md](docs/design-system.md) | Màu, typography, spacing, component, trạng thái | 1 |
-| [docs/assets.md](docs/assets.md) | Icon, hình ảnh, font, seed data | 1 |
-| [docs/folder-structure.md](docs/folder-structure.md) | Cây thư mục và trách nhiệm từng file | 1 |
-| `docs/architecture.md` | Kiến trúc, data flow, bảo mật | 2 |
-| `docs/database.md` | ERD, bảng, ràng buộc, index | 2 |
-| `docs/api.md` | Server Actions, Route Handlers, mã lỗi | 2 |
-| `docs/git-workflow.md` | Branching, commit convention | 3 |
-| `docs/github-setup.md` | `.env.example`, `.gitignore`, CI, issue template | 3 |
-| `docs/deploy.md` | Triển khai Vercel, Supabase, Upstash | 3 |
-| `docs/roadmap.md` | Phase và danh sách TASK | 3 |
-| `docs/worklog.md` | Bảng theo dõi tiến độ | 3 |
+```
+portfolio/
+├── .github/              # Cấu hình CI/CD GitHub Actions
+├── docs/                 # Toàn bộ 13 tài liệu đặc tả, kiến trúc, database, roadmap
+├── public/               # Tài nguyên tĩnh (ảnh, icon SVG, file resume.pdf)
+├── src/
+│   ├── app/              # Next.js App Router (layout, page, error, not-found)
+│   ├── components/       # UI Primitives, Layout shell, Theme provider & toggle
+│   ├── data/             # Nguồn dữ liệu tĩnh (siteConfig, profile, skills, experience)
+│   ├── hooks/            # Custom hooks (media query, keyboard shortcut, clipboard)
+│   ├── lib/              # Tiện ích cn, cấu hình hệ thống
+│   └── types/            # Khai báo kiểu TypeScript toàn cục
+├── AGENTS.md             # Quy chuẩn kỹ thuật và kiểm thử cho AI Agents
+├── README.md             # Tài liệu tổng quan dự án
+└── package.json          # Cấu hình gói và kịch bản thực thi
+```
 
 ---
 
-## 7. Giấy phép
+## 7. Bộ tài liệu dự án
+
+| File | Nội dung |
+| :--- | :--- |
+| [README.md](README.md) | Tổng quan, khởi chạy nhanh |
+| [AGENTS.md](AGENTS.md) | Quy chuẩn kỹ thuật và kiểm thử cho AI Agents |
+| [docs/product.md](docs/product.md) | Tầm nhìn, persona, USP, phạm vi MVP |
+| [docs/spec.md](docs/spec.md) | Đặc tả chức năng, user flow, business rule |
+| [docs/design-system.md](docs/design-system.md) | Màu, typography, spacing, component, trạng thái |
+| [docs/assets.md](docs/assets.md) | Icon, hình ảnh, font, seed data |
+| [docs/folder-structure.md](docs/folder-structure.md) | Cây thư mục và trách nhiệm từng file |
+| [docs/architecture.md](docs/architecture.md) | Kiến trúc, data flow, bảo mật |
+| [docs/database.md](docs/database.md) | ERD, bảng, ràng buộc, index |
+| [docs/api.md](docs/api.md) | Server Actions, Route Handlers, mã lỗi |
+| [docs/git-workflow.md](docs/git-workflow.md) | Branching, commit convention |
+| [docs/github-setup.md](docs/github-setup.md) | `.env.example`, `.gitignore`, CI, issue template |
+| [docs/deploy.md](docs/deploy.md) | Triển khai Vercel, Supabase, Upstash |
+| [docs/roadmap.md](docs/roadmap.md) | Phase và danh sách TASK |
+| [docs/worklog.md](docs/worklog.md) | Bảng theo dõi tiến độ |
+
+---
+
+## 8. Giấy phép
 
 Mã nguồn phát hành theo giấy phép MIT. Nội dung cá nhân (ảnh, CV, bài viết Case Study) thuộc bản quyền của chủ sở hữu, không áp dụng MIT.
