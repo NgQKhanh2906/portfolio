@@ -30,7 +30,7 @@ Tài liệu này theo dõi tiến độ thực thi thực tế của toàn bộ 
 | `TASK-09` | Xây dựng Bộ xử lý Nội dung MDX và Trích xuất Dữ liệu Dự án | `DONE` | 12/11/2026 | MDX parser, Zod frontmatter schema, TECH_REGISTRY, 3 Case Studies mẫu đủ 6 headings, script validate-content và 26/26 unit tests pass 100% |
 | `TASK-10` | Xây dựng Trang Danh sách Dự án và Bộ lọc Công nghệ Đa tiêu chí | `DONE` | 12/11/2026 | Trang /projects, bộ lọc đa tiêu chí AND logic, đồng bộ URL query params, First Load JS 106 kB (< 150 kB), 32/32 unit tests pass 100% |
 | `TASK-11` | Triển khai Trang Chi tiết Case Study Kỹ thuật và Điều hướng Mục lục | `DONE` | 12/11/2026 | Trang chi tiết /projects/[slug] SSG 100%, ProjectHeader, sticky TableOfContents, MDXContent, ProjectNavigation, First Load JS 103 kB, 38/38 unit tests pass 100% |
-| `TASK-12` | Triển khai Bộ đếm Lượt xem Dự án Bằng Upstash Redis | `TODO` | - | Chưa bắt đầu |
+| `TASK-12` | Triển khai Bộ đếm Lượt xem Dự án Bằng Upstash Redis | `DONE` | 12/11/2026 | Bộ đếm lượt xem Upstash Redis REST, SHA-256 IP deduplication 24h, route dynamic /api/views/[slug], graceful degradation, 42/42 unit tests pass 100% |
 | `TASK-13` | Xây dựng Khung Điều khiển và Playground của Component Lab | `TODO` | - | Chưa bắt đầu |
 | `TASK-14` | Xây dựng Bản Thử nghiệm Demo Cho Button và Tabs Component | `TODO` | - | Chưa bắt đầu |
 | `TASK-15` | Xây dựng Hệ thống Toast Thông báo và Bản Thử nghiệm Toast Demo | `TODO` | - | Chưa bắt đầu |
