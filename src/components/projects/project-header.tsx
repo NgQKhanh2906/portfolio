@@ -4,6 +4,7 @@ import { ArrowLeft, ExternalLink, Github, Calendar, User, Users, Clock } from "l
 import { type ProjectFrontmatter } from "@/lib/validations/project-frontmatter";
 import { Button } from "@/components/ui/button";
 import { TechBadge } from "./tech-badge";
+import { ViewCounter } from "./view-counter";
 
 export interface ProjectHeaderProps {
   project: ProjectFrontmatter;
@@ -21,9 +22,12 @@ export function ProjectHeader({ project }: ProjectHeaderProps) {
         <span>Quay lại tất cả dự án</span>
       </Link>
 
-      {/* Monospace section indicator */}
-      <div className="font-mono text-xs font-semibold uppercase tracking-wider text-accent mb-2">
-        CASE STUDY / {project.year}
+      {/* Monospace section indicator & View Counter */}
+      <div className="flex items-center justify-between gap-4 mb-2">
+        <div className="font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+          CASE STUDY / {project.year}
+        </div>
+        <ViewCounter slug={project.slug} />
       </div>
 
       {/* Title */}

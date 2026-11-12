@@ -1,10 +1,17 @@
 import React from "react";
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
 import { ProjectHeader } from "@/components/projects/project-header";
 import { type ProjectFrontmatter } from "@/lib/validations/project-frontmatter";
 
 describe("ProjectHeader Component", () => {
+  beforeEach(() => {
+    vi.spyOn(global, "fetch").mockResolvedValue({
+      ok: true,
+      json: async () => ({ views: 50 }),
+    } as Response);
+  });
+
   const sampleProject: ProjectFrontmatter = {
     title: "TaskFlow Project",
     slug: "taskflow",
@@ -24,7 +31,7 @@ describe("ProjectHeader Component", () => {
     },
   };
 
-  it("renders all header meta info properly", () => {
+  it("renders all header meta info properly", async () => {
     render(<ProjectHeader project={sampleProject} />);
     expect(screen.getByText("TaskFlow Project")).toBeInTheDocument();
     expect(screen.getByText("A collaborative Kanban board web app.")).toBeInTheDocument();
@@ -32,9 +39,13 @@ describe("ProjectHeader Component", () => {
     expect(screen.getByText("Lead Frontend")).toBeInTheDocument();
     expect(screen.getByText("3 người")).toBeInTheDocument();
     expect(screen.getByText("3 tháng")).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText(/50 lượt xem/i)).toBeInTheDocument();
+    });
   });
 
-  it("renders demo and source action buttons", () => {
+  it("renders demo and source action buttons", async () => {
     render(<ProjectHeader project={sampleProject} />);
     expect(screen.getByRole("link", { name: /mã nguồn/i })).toHaveAttribute(
       "href",
@@ -44,5 +55,9 @@ describe("ProjectHeader Component", () => {
       "href",
       "https://demo.example.com",
     );
+
+    await waitFor(() => {
+      expect(screen.getByText(/50 lượt xem/i)).toBeInTheDocument();
+    });
   });
 });
