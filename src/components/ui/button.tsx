@@ -2,10 +2,13 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+export type ButtonSize = "sm" | "md" | "lg";
+
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost" | "danger";
-  size?: "sm" | "md" | "lg";
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   loading?: boolean;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;

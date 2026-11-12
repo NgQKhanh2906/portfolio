@@ -31,9 +31,9 @@ Tài liệu này theo dõi tiến độ thực thi thực tế của toàn bộ 
 | `TASK-10` | Xây dựng Trang Danh sách Dự án và Bộ lọc Công nghệ Đa tiêu chí | `DONE` | 12/11/2026 | Trang /projects, bộ lọc đa tiêu chí AND logic, đồng bộ URL query params, First Load JS 106 kB (< 150 kB), 32/32 unit tests pass 100% |
 | `TASK-11` | Triển khai Trang Chi tiết Case Study Kỹ thuật và Điều hướng Mục lục | `DONE` | 12/11/2026 | Trang chi tiết /projects/[slug] SSG 100%, ProjectHeader, sticky TableOfContents, MDXContent, ProjectNavigation, First Load JS 103 kB, 38/38 unit tests pass 100% |
 | `TASK-12` | Triển khai Bộ đếm Lượt xem Dự án Bằng Upstash Redis | `DONE` | 12/11/2026 | Bộ đếm lượt xem Upstash Redis REST, SHA-256 IP deduplication 24h, route dynamic /api/views/[slug], graceful degradation, 42/42 unit tests pass 100% |
-| `TASK-13` | Xây dựng Khung Điều khiển và Playground của Component Lab | `TODO` | - | Chưa bắt đầu |
-| `TASK-14` | Xây dựng Bản Thử nghiệm Demo Cho Button và Tabs Component | `TODO` | - | Chưa bắt đầu |
-| `TASK-15` | Xây dựng Hệ thống Toast Thông báo và Bản Thử nghiệm Toast Demo | `TODO` | - | Chưa bắt đầu |
+| `TASK-13` | Xây dựng Khung Điều khiển và Playground của Component Lab | `DONE` | 13/11/2026 | Khung Playground /lab đồng bộ tham số URL ?c=..., CodePreview sao chép kèm phản hồi, A11yNotes chuẩn WCAG 2.1 AA |
+| `TASK-14` | Xây dựng Bản Thử nghiệm Demo Cho Button và Tabs Component | `DONE` | 13/11/2026 | Component Tabs WAI-ARIA roving tabindex, phím mũi tên/Home/End, ButtonDemo và TabsDemo đa biến thể |
+| `TASK-15` | Xây dựng Hệ thống Toast Thông báo và Bản Thử nghiệm Toast Demo | `DONE` | 13/11/2026 | Hệ thống Toast tự viết (info/success/warning/error), tạm dừng countdown khi hover/focus, ToastProvider toàn cục, 51/51 tests pass |
 | `TASK-16` | Cấu hình Kết nối CSDL PostgreSQL với Drizzle ORM và Schema | `TODO` | - | Chưa bắt đầu |
 | `TASK-17` | Tích hợp Xác thực Người dùng Auth.js (NextAuth v5) với GitHub OAuth | `TODO` | - | Chưa bắt đầu |
 | `TASK-18` | Triển khai Giao diện Sổ lưu niệm và Server Actions có Optimistic UI | `TODO` | - | Chưa bắt đầu |
@@ -56,3 +56,8 @@ Khu vực này dùng để ghi lại các giải pháp kỹ thuật cụ thể k
 - **Hoàn thành TASK-06 (Phân rã Server Components trang chủ):** Đã module hóa `src/app/page.tsx` thành 6 Server Components chuyên trách (`hero.tsx`, `about-section.tsx`, `skills-section.tsx`, `skill-group.tsx`, `experience-timeline.tsx`, `timeline-item.tsx`, `featured-projects.tsx`, `telemetry-preview.tsx`). Kết quả First Load JS cho trang chủ đo được sau `next build` chỉ là 94.1 kB, tối ưu sâu so với chỉ tiêu 150 kB.
 - **Bổ sung Unit Tests:** Tạo bộ kiểm thử đơn vị cho Primitive UI (`button.test.tsx`, `badge.test.tsx`, `card.test.tsx`, `command-trigger.test.tsx`), toàn bộ 13/13 test cases đều pass 100% trên Vitest jsdom.
 - **Hoàn thành TASK-07 (Command Palette):** Tích hợp `cmdk` cùng các nhóm lệnh điều hướng, đổi theme, thao tác sao chép email kèm phản hồi clipboard và phím tắt `Ctrl + K`. Đạt chuẩn accessibility ARIA combobox.
+- **Hoàn thành TASK-13, TASK-14, TASK-15 (Component Lab - Phase 4):**
+  - Xây dựng thành công Primitive `Tabs` tự viết theo chuẩn WAI-ARIA Tabs pattern (phím mũi tên, Home, End, roving tabindex, hướng horizontal/vertical, kiểu dáng pill/underline).
+  - Xây dựng hệ thống `ToastProvider` và hook `useToast` tự viết không dùng thư viện ngoài với 4 biến thể, cấu hình vị trí/thời lượng, tính năng tạm dừng đếm ngược khi hover/focus bàn phím và vùng chứa `aria-live` ('polite' cho info/success, 'assertive' cho error).
+  - Triển khai trang `/lab` và `LabShell` tương tác thời gian thực, đồng bộ URL `?c=button|tabs|toast`, khung xem trước code JSX kèm nút copy và tài liệu Accessibility chi tiết.
+  - Kết quả kiểm thử: Toàn bộ 51/51 tests pass trên 18 test files, 0 lỗi TypeScript, 0 lỗi ESLint, build production thành công 11/11 trang với First Load JS trang `/lab` chỉ 105 kB (< 150 kB).
