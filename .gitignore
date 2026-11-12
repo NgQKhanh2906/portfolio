@@ -47,3 +47,6 @@ lerna-debug.log*
 
 # Drizzle Local Metadata Cache
 .drizzle/
+
+# TypeScript build info cache
+*.tsbuildinfo
