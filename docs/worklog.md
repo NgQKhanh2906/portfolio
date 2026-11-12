@@ -27,7 +27,7 @@ Tài liệu này theo dõi tiến độ thực thi thực tế của toàn bộ 
 | `TASK-06` | Xây dựng Các Section Trang chủ (Hero, About, Skills, Journey) | `DONE` | 12/11/2026 | Phân rã Server Components thành công (hero, about, skills, timeline, projects, telemetry). First Load JS đạt 94.1 kB (< 150 kB) |
 | `TASK-07` | Triển khai Bảng lệnh Điều khiển Nhanh (Command Palette `Ctrl + K`) | `DONE` | 12/11/2026 | Command Palette hoàn thiện bằng cmdk, hỗ trợ tìm kiếm điều hướng, đổi theme, sao chép email, phím tắt và WAI-ARIA combobox |
 | `TASK-08` | Triển khai Widget Giám sát Hoạt động Kỹ thuật (Live Telemetry Widget) | `DONE` | 12/11/2026 | Tích hợp Live Telemetry widget, GitHub client kèm fallback offline an toàn, route /api/telemetry ISR 3600s, unit tests pass 100% |
-| `TASK-09` | Xây dựng Bộ xử lý Nội dung MDX và Trích xuất Dữ liệu Dự án | `TODO` | - | Chưa bắt đầu |
+| `TASK-09` | Xây dựng Bộ xử lý Nội dung MDX và Trích xuất Dữ liệu Dự án | `DONE` | 12/11/2026 | MDX parser, Zod frontmatter schema, TECH_REGISTRY, 3 Case Studies mẫu đủ 6 headings, script validate-content và 26/26 unit tests pass 100% |
 | `TASK-10` | Xây dựng Trang Danh sách Dự án và Bộ lọc Công nghệ Đa tiêu chí | `TODO` | - | Chưa bắt đầu |
 | `TASK-11` | Triển khai Trang Chi tiết Case Study Kỹ thuật và Điều hướng Mục lục | `TODO` | - | Chưa bắt đầu |
 | `TASK-12` | Triển khai Bộ đếm Lượt xem Dự án Bằng Upstash Redis | `TODO` | - | Chưa bắt đầu |

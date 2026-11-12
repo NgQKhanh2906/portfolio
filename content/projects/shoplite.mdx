@@ -1,0 +1,51 @@
+---
+title: "ShopLite - Micro Storefront"
+slug: "shoplite"
+summary: "Cửa hàng trực tuyến tối giản với luồng thanh toán và quản lý đơn hàng backend bằng Node.js & Express."
+coverImage: "/images/projects/shoplite-cover.png"
+year: 2025
+role: "Backend & API Developer"
+teamSize: "2 người"
+period: "07/2025 - 09/2025"
+tech:
+  - typescript
+  - nodejs
+  - express
+  - postgresql
+  - docker
+  - git
+featured: false
+published: true
+order: 3
+links:
+  demo: "https://shoplite-demo.example.com"
+  source: "https://github.com/NgQKhanh2906/shoplite"
+---
+
+## Bối cảnh và bài toán
+Các doanh nghiệp bán lẻ nhỏ thường gặp khó khăn khi triển khai các sàn thương mại điện tử lớn do chi phí hạ tầng và độ phức tạp trong cấu hình.
+Dự án ShopLite ra đời nhằm cung cấp giải pháp micro storefront tinh gọn: tập trung vào danh mục sản phẩm, giỏ hàng nhẹ và quy trình thanh toán nhanh chóng.
+
+## Mục tiêu và ràng buộc
+- **Mục tiêu:**
+  - Thời gian xử lý đơn hàng và tính toán giá trị giỏ hàng dưới 50ms.
+  - Xử lý đồng thời giao dịch thanh toán không bị âm tồn kho (race conditions).
+- **Ràng buộc:**
+  - Triển khai toàn bộ hệ thống bằng Docker Compose trên VPS dung lượng 1GB RAM.
+
+## Kiến trúc giải pháp
+- **API Server:** Node.js với Express và TypeScript, phân tầng Controller - Service - Repository rõ ràng.
+- **Data Persistence:** PostgreSQL với cơ chế Database Transactions để đảm bảo tính toàn vẹn ACID khi thanh toán.
+- **Containerization:** Đóng gói ứng dụng thành Docker container nhiều tầng (multi-stage build) để tối ưu kích thước image.
+
+## Quyết định kỹ thuật và trade-off
+- **Không dùng Microservices:** Đối với quy mô cửa hàng nhỏ, kiến trúc Modular Monolith đem lại hiệu quả vận hành và kiểm thử cao hơn nhiều so với việc chia nhỏ thành các microservices độc lập.
+- **Database Locks thay vì Distributed Lock:** Sử dụng câu lệnh `SELECT ... FOR UPDATE` trực tiếp trong PostgreSQL transaction để khóa bản ghi sản phẩm khi trừ tồn kho, loại bỏ nhu cầu cần cụm Redis chuyên dụng.
+
+## Thách thức và cách giải quyết
+- **Hiện tượng đặt hàng vượt quá tồn kho (Over-selling):** Khi có nhiều yêu cầu checkout cùng một lúc đối với sản phẩm chỉ còn 1 món.
+  - *Giải pháp:* Áp dụng Transaction Isolation Level `Repeatable Read` kết hợp khóa bi quan (pessimistic lock) trên hàng tồn kho trong suốt quá trình xử lý đơn hàng.
+
+## Kết quả và bài học
+- Hệ thống xử lý ổn định 500 yêu cầu/giây trong các bài kiểm thử tải với k6 mà không xảy ra sai lệch số liệu kho.
+- Bài học: Hiểu sâu về cơ chế khóa và giao dịch trong cơ sở dữ liệu quan hệ là yếu tố then chốt để xây dựng hệ thống thương mại điện tử đáng tin cậy.

@@ -1,0 +1,54 @@
+---
+title: "TaskFlow - Kanban Board"
+slug: "taskflow"
+summary: "Ứng dụng quản lý công việc kéo thả theo thời gian thực với phân quyền thành viên và thông báo tự động."
+coverImage: "/images/projects/taskflow-cover.png"
+year: 2025
+role: "Full-stack Developer"
+teamSize: "4 người"
+period: "03/2025 - 06/2025"
+tech:
+  - react
+  - typescript
+  - tailwindcss
+  - nodejs
+  - express
+  - postgresql
+  - prisma
+  - docker
+featured: true
+published: true
+order: 2
+links:
+  demo: "https://taskflow-demo.example.com"
+  source: "https://github.com/NgQKhanh2906/taskflow"
+---
+
+## Bối cảnh và bài toán
+Trong các dự án nhóm học tập và làm việc từ xa, các thành viên thường gặp khó khăn trong việc theo dõi tiến độ công việc và trạng thái bàn giao nhiệm vụ. Các công cụ quản lý dự án hiện có trên thị trường thường quá cồng kềnh hoặc yêu cầu chi phí bản quyền cao đối với sinh viên.
+Mục tiêu là xây dựng một bảng Kanban trực quan, nhẹ nhàng, hỗ trợ kéo thả thẻ công việc và cập nhật trạng thái lập tức giữa các thành viên.
+
+## Mục tiêu và ràng buộc
+- **Mục tiêu:**
+  - Hỗ trợ thao tác kéo thả (drag and drop) mượt mà với độ trễ phản hồi dưới 100ms.
+  - Phân quyền rõ ràng: Quản trị viên (Admin), Thành viên dự án (Member), và Khách (Viewer).
+- **Ràng buộc:**
+  - Đảm bảo tính nhất quán dữ liệu khi nhiều người dùng cùng thao tác cập nhật trên cùng một bảng Kanban.
+
+## Kiến trúc giải pháp
+- **Frontend:** Xây dựng bằng React và TypeScript với thư viện DnD nhẹ, tối ưu render qua memoization.
+- **Backend:** Node.js và Express REST API, xác thực bằng JWT kết hợp Refresh Token lưu trong HttpOnly Cookie.
+- **Database:** PostgreSQL quản lý quan hệ dữ liệu dự án, cột Kanban và thẻ nhiệm vụ qua Prisma ORM.
+
+## Quyết định kỹ thuật và trade-off
+- **Prisma ORM:** Lựa chọn Prisma giúp nhóm phát triển nhanh nhờ khả năng sinh kiểu dữ liệu tự động và migration schema trực quan.
+- **Polling vs WebSockets:** Ở giai đoạn đầu, nhóm chọn polling có chu kỳ thích ứng để giảm độ phức tạp vận hành server trước khi chuyển sang WebSocket đầy đủ.
+
+## Thách thức và cách giải quyết
+- **Xung đột thứ tự thẻ khi kéo thả đồng thời:** Hai người dùng cùng kéo thả thẻ vào một vị trí dẫn đến sai lệch chỉ mục sắp xếp.
+  - *Giải pháp:* Sử dụng thuật toán fractional indexing (chỉ mục số thực) thay vì số nguyên liên tục, giúp việc chèn thẻ ở giữa hai vị trí không cần cập nhật lại toàn bộ danh sách.
+
+## Kết quả và bài học
+- Ứng dụng đã phục vụ thử nghiệm cho hơn 120 sinh viên trong học kỳ đồ án môn học.
+- Đạt giải Nhì Hackathon sinh viên công nghệ năm 2024.
+- Bài học: Tối ưu trải nghiệm kéo thả trên thiết bị di động cần thiết kế tương tác riêng biệt thay vì chỉ dùng lại sự kiện chuột của desktop.
