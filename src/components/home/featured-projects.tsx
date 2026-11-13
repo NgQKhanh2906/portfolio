@@ -82,39 +82,7 @@ export function FeaturedProjects() {
                 <Badge variant="neutral">Prisma</Badge>
               </div>
               <Link
-                href="/projects"
-                className="text-xs font-semibold text-accent hover:underline flex items-center gap-1"
-              >
-                Chi tiết
-                <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
-          </Card>
-
-          {/* ShopLite Card Placeholder */}
-          <Card interactive className="flex flex-col justify-between">
-            <div>
-              <div className="h-44 w-full rounded-md bg-surface-2 flex items-center justify-center font-mono text-xs text-muted mb-4 border border-border">
-                16:9 Cover Image
-              </div>
-              <div className="flex items-center justify-between mb-2">
-                <Badge variant="neutral">2025</Badge>
-                <span className="text-xs font-mono text-muted">E-commerce</span>
-              </div>
-              <h3 className="text-lg font-bold text-text mb-2">
-                ShopLite - Micro Storefront
-              </h3>
-              <p className="text-sm text-muted line-clamp-2">
-                Cửa hàng trực tuyến tối giản với luồng thanh toán và quản lý đơn hàng backend bằng Node.js & Express.
-              </p>
-            </div>
-            <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
-              <div className="flex flex-wrap gap-1.5">
-                <Badge variant="neutral">TypeScript</Badge>
-                <Badge variant="neutral">Express</Badge>
-              </div>
-              <Link
-                href="/projects"
+                href="/projects/taskflow"
                 className="text-xs font-semibold text-accent hover:underline flex items-center gap-1"
               >
                 Chi tiết

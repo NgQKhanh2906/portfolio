@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
+import { Menu, ArrowUpRight, Code2 } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { Container } from "./container";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { MobileNav } from "./mobile-nav";
 import { CommandTrigger } from "@/components/command-palette/command-trigger";
 import { CommandPalette } from "@/components/command-palette/command-palette";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -43,12 +44,12 @@ export function SiteHeader() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 font-mono text-base font-bold tracking-tight text-text hover:text-accent transition-colors"
+              className="flex items-center gap-2 font-mono text-base font-bold tracking-tight text-text hover:text-accent transition-colors group"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-accent text-accent-fg text-xs font-mono font-bold">
-                {siteConfig.shortName}
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/15 text-accent border border-accent/30 group-hover:bg-accent group-hover:text-accent-fg transition-all duration-base">
+                <Code2 className="h-4 w-4" />
               </span>
-              <span className="hidden sm:inline-block font-sans text-sm font-semibold">
+              <span className="font-mono text-sm font-bold tracking-tight">
                 {siteConfig.name}
               </span>
             </Link>
@@ -83,8 +84,20 @@ export function SiteHeader() {
                 className="hidden sm:flex"
               />
 
-              {/* Theme Toggle */}
+              {/* Theme Toggle (1-click Light/Dark) */}
               <ThemeToggle />
+
+              {/* Desktop CTA Button */}
+              <Link href="/contact" className="hidden lg:inline-flex ml-1">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  iconRight={<ArrowUpRight className="h-3.5 w-3.5" />}
+                  className="rounded-lg shadow-sm font-mono text-xs"
+                >
+                  Liên hệ
+                </Button>
+              </Link>
 
               {/* Mobile menu trigger */}
               <button
