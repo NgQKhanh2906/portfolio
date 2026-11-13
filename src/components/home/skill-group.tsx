@@ -25,13 +25,13 @@ export function SkillGroup({ group }: SkillGroupProps) {
           {group.skills.map((skill, skillIndex) => (
             <li
               key={skillIndex}
-              className="flex items-center justify-between text-sm text-text group/item py-1"
+              className="flex items-start justify-between gap-2 text-sm text-text group/item py-1"
             >
-              <span className="flex items-center gap-2.5 min-w-0">
-                <span className="flex h-5 w-5 shrink-0 aspect-square items-center justify-center rounded-full bg-accent/15 text-accent group-hover/item:bg-accent group-hover/item:text-accent-fg transition-all duration-fast">
-                  <CheckCircle2 className="h-3.5 w-3.5" />
+              <span className="flex items-start gap-2.5 min-w-0 flex-1">
+                <span className="flex h-5 w-5 shrink-0 aspect-square items-center justify-center rounded-full bg-accent/15 text-accent mt-0.5 group-hover/item:bg-accent group-hover/item:text-accent-fg transition-all duration-fast">
+                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 aspect-square" />
                 </span>
-                <span className="font-medium group-hover/item:text-accent transition-colors">
+                <span className="font-medium leading-snug group-hover/item:text-accent transition-colors">
                   {skill.name}
                 </span>
               </span>
@@ -39,10 +39,10 @@ export function SkillGroup({ group }: SkillGroupProps) {
               {skill.proof && (
                 <Link
                   href={skill.proof}
-                  className="inline-flex items-center gap-1 rounded px-2 py-0.5 font-mono text-xs text-accent hover:bg-accent/10 border border-transparent hover:border-accent/30 transition-all duration-fast"
+                  className="inline-flex items-center gap-1 shrink-0 rounded px-2 py-0.5 font-mono text-xs text-accent hover:bg-accent/10 border border-transparent hover:border-accent/30 transition-all duration-fast mt-0.5"
                 >
                   <span>Bằng chứng</span>
-                  <ArrowUpRight className="h-3 w-3" />
+                  <ArrowUpRight className="h-3 w-3 shrink-0 aspect-square" />
                 </Link>
               )}
             </li>

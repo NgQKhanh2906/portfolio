@@ -114,8 +114,8 @@ export function Hero() {
 
             <div className="relative w-full max-w-md flex flex-col gap-5">
               {/* Studio Portrait representation / avatar */}
-              <div className="w-full flex items-center justify-between gap-3.5 rounded-2xl border border-border/80 bg-surface/85 p-3 backdrop-blur-md shadow-lg transition-all duration-base hover:border-accent">
-                <div className="flex items-center gap-3">
+              <div className="w-full flex items-center justify-between gap-4 rounded-2xl border border-border/80 bg-surface/85 p-4 sm:p-5 backdrop-blur-md shadow-lg transition-all duration-base hover:border-accent">
+                <div className="flex items-center gap-3.5 min-w-0 flex-1">
                   {/* Studio Portrait Frame */}
                   <div className="relative">
                     <div
@@ -193,8 +193,8 @@ export function Hero() {
                   </div>
 
                   {/* Developer Identity Details */}
-                  <div className="flex flex-col min-w-0">
-                    <div className="flex items-center gap-1.5">
+                  <div className="flex flex-col min-w-0 gap-0.5">
+                    <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="text-sm font-bold text-text truncate">
                         {siteConfig.name}
                       </span>
@@ -211,12 +211,12 @@ export function Hero() {
                   </div>
                 </div>
 
-                <div className="hidden sm:flex flex-col items-end text-right font-mono text-[10px] text-muted">
-                  <span className="text-status-success font-semibold flex items-center gap-1">
+                <div className="hidden sm:flex shrink-0 flex-col items-end text-right font-mono text-[10px] pl-4 border-l border-border/60">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-status-success/15 px-2.5 py-1 text-[10px] font-bold text-status-success border border-status-success/30">
                     <span className="h-1.5 w-1.5 shrink-0 aspect-square rounded-full bg-status-success animate-pulse" />
                     ONLINE
                   </span>
-                  <span>{siteConfig.timezone}</span>
+                  <span className="mt-1 text-muted text-[10px]">{siteConfig.timezone}</span>
                 </div>
               </div>
 
