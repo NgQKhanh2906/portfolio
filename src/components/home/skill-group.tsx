@@ -27,8 +27,8 @@ export function SkillGroup({ group }: SkillGroupProps) {
               key={skillIndex}
               className="flex items-center justify-between text-sm text-text group/item py-1"
             >
-              <span className="flex items-center gap-2.5">
-                <span className="flex h-5 w-5 items-center justify-center rounded-md bg-accent/10 text-accent group-hover/item:bg-accent group-hover/item:text-accent-fg transition-all duration-fast">
+              <span className="flex items-center gap-2.5 min-w-0">
+                <span className="flex h-5 w-5 shrink-0 aspect-square items-center justify-center rounded-full bg-accent/15 text-accent group-hover/item:bg-accent group-hover/item:text-accent-fg transition-all duration-fast">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                 </span>
                 <span className="font-medium group-hover/item:text-accent transition-colors">

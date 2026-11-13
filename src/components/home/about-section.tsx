@@ -12,34 +12,14 @@ import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Button } from "@/components/ui/button";
 
-export function AboutSection() {
-  const stats = [
-    {
-      icon: <Calendar className="h-5 w-5 text-accent" />,
-      value: "4+",
-      label: "Năm học tập CNTT",
-      subtext: "Nền tảng kiến trúc phần mềm vững chắc",
-    },
-    {
-      icon: <FolderGit2 className="h-5 w-5 text-accent" />,
-      value: "10+",
-      label: "Dự án hoàn thành",
-      subtext: "Bao gồm 3 Case Studies kỹ thuật chuyên sâu",
-    },
-    {
-      icon: <CheckCircle2 className="h-5 w-5 text-accent" />,
-      value: "100%",
-      label: "Chuẩn WCAG 2.1 AA",
-      subtext: "Test coverage và hiệu năng tối ưu",
-    },
-    {
-      icon: <Github className="h-5 w-5 text-accent" />,
-      value: "300+",
-      label: "GitHub Contributions",
-      subtext: "Hoạt động đóng góp liên tục trên Git",
-    },
-  ];
+const STAT_ICONS = {
+  Calendar,
+  FolderGit2,
+  CheckCircle2,
+  Github,
+} as const;
 
+export function AboutSection() {
   return (
     <section id="about" className="py-16 md:py-24 border-t border-border bg-surface/30">
       <Container>
@@ -50,8 +30,8 @@ export function AboutSection() {
         />
 
         <div className="grid gap-10 lg:grid-cols-12 items-start">
-          {/* Left Column: Bio Content */}
-          <div className="lg:col-span-6 space-y-5">
+          {/* Left Column: Narrative Biography */}
+          <div className="lg:col-span-6 space-y-6">
             <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-text">
               Đam mê tạo ra các giải pháp số tinh gọn và hiệu quả
             </h3>
@@ -67,7 +47,12 @@ export function AboutSection() {
                 <Button
                   variant="secondary"
                   size="md"
-                  iconRight={<ArrowRight className="h-4 w-4" />}
+                  iconRight={
+                    <ArrowRight
+                      className="h-4 w-4 shrink-0 aspect-square"
+                      aria-hidden="true"
+                    />
+                  }
                   className="rounded-xl border-border hover:border-accent hover:text-accent transition-all duration-base"
                 >
                   Khám phá các Case Study
@@ -78,25 +63,33 @@ export function AboutSection() {
 
           {/* Right Column: 2x2 Stat Cards Grid */}
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="rounded-xl border border-border bg-surface p-6 card-interactive shadow-xs group"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 border border-accent/20 group-hover:bg-accent/20 transition-colors duration-fast mb-4">
-                  {stat.icon}
+            {profile.stats.map((stat, index) => {
+              const IconComponent =
+                STAT_ICONS[stat.icon as keyof typeof STAT_ICONS] ?? Calendar;
+
+              return (
+                <div
+                  key={index}
+                  className="rounded-xl border border-border bg-surface p-6 card-interactive shadow-xs group"
+                >
+                  <div className="flex h-11 w-11 shrink-0 aspect-square items-center justify-center rounded-full bg-accent/10 border border-accent/20 group-hover:bg-accent/20 group-hover:border-accent/40 transition-colors duration-fast mb-4">
+                    <IconComponent
+                      className="h-5 w-5 shrink-0 aspect-square text-accent"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div className="font-mono text-3xl font-extrabold tracking-tight text-text group-hover:text-accent transition-colors">
+                    {stat.value}
+                  </div>
+                  <div className="font-sans text-sm font-semibold text-text mt-1.5">
+                    {stat.label}
+                  </div>
+                  <div className="text-xs text-muted mt-1 leading-normal">
+                    {stat.subtext}
+                  </div>
                 </div>
-                <div className="font-mono text-3xl font-extrabold tracking-tight text-text group-hover:text-accent transition-colors">
-                  {stat.value}
-                </div>
-                <div className="font-sans text-sm font-semibold text-text mt-1">
-                  {stat.label}
-                </div>
-                <div className="text-xs text-muted mt-1 leading-normal">
-                  {stat.subtext}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </Container>
