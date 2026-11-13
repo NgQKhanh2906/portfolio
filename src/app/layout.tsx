@@ -8,6 +8,7 @@ import { ToastProvider } from "@/components/ui/toast";
 import { SkipLink } from "@/components/layout/skip-link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { ScrollProgress } from "@/components/layout/scroll-progress";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -88,6 +89,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-bg text-text selection:bg-accent/20 selection:text-accent">
         <ThemeProvider>
           <ToastProvider>
+            <ScrollProgress />
             <SkipLink />
             <div className="flex min-h-screen flex-col">
               <SiteHeader />

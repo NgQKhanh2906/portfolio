@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { CheckCircle2, ExternalLink } from "lucide-react";
+import { CheckCircle2, ArrowUpRight } from "lucide-react";
 import { type SkillGroup as SkillGroupType } from "@/data/skills";
 import { Card } from "@/components/ui/card";
 
@@ -10,28 +10,39 @@ export interface SkillGroupProps {
 
 export function SkillGroup({ group }: SkillGroupProps) {
   return (
-    <Card className="p-5 flex flex-col justify-between">
+    <Card className="p-6 flex flex-col justify-between card-interactive rounded-xl border border-border bg-surface shadow-xs">
       <div>
-        <h3 className="font-mono text-sm font-bold text-accent uppercase mb-3">
-          {group.groupName}
-        </h3>
-        <ul className="space-y-2">
+        <div className="flex items-center justify-between mb-4 pb-2 border-b border-border/70">
+          <h3 className="font-mono text-xs font-bold text-accent uppercase tracking-wider">
+            {group.groupName}
+          </h3>
+          <span className="text-[11px] font-mono text-muted">
+            {group.skills.length} kỹ năng
+          </span>
+        </div>
+
+        <ul className="space-y-3">
           {group.skills.map((skill, skillIndex) => (
             <li
               key={skillIndex}
-              className="flex items-center justify-between text-sm text-text"
+              className="flex items-center justify-between text-sm text-text group/item py-1"
             >
-              <span className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-accent shrink-0" />
-                <span>{skill.name}</span>
+              <span className="flex items-center gap-2.5">
+                <span className="flex h-5 w-5 items-center justify-center rounded-md bg-accent/10 text-accent group-hover/item:bg-accent group-hover/item:text-accent-fg transition-all duration-fast">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                </span>
+                <span className="font-medium group-hover/item:text-accent transition-colors">
+                  {skill.name}
+                </span>
               </span>
+
               {skill.proof && (
                 <Link
                   href={skill.proof}
-                  className="text-xs text-accent hover:underline flex items-center gap-0.5 ml-2"
+                  className="inline-flex items-center gap-1 rounded px-2 py-0.5 font-mono text-xs text-accent hover:bg-accent/10 border border-transparent hover:border-accent/30 transition-all duration-fast"
                 >
-                  <span>Xem chứng minh</span>
-                  <ExternalLink className="h-3 w-3" />
+                  <span>Bằng chứng</span>
+                  <ArrowUpRight className="h-3 w-3" />
                 </Link>
               )}
             </li>

@@ -4,18 +4,20 @@
 
 @layer base {
   :root {
-    --color-bg: #FAFAF9;
-    --color-surface: #FFFFFF;
-    --color-surface-2: #F4F4F2;
-    --color-border: #E4E4E0;
-    --color-border-strong: #C9C9C3;
-    --color-text: #141414;
-    --color-text-muted: #5C5C57;
-    --color-text-subtle: #8A8A84;
+    /* Light Mode: White background & Emerald Green accent */
+    --color-bg: #FFFFFF;
+    --color-surface: #FAFAF9;
+    --color-surface-2: #F4F4F5;
+    --color-border: #E4E4E7;
+    --color-border-strong: #D4D4D8;
+    --color-text: #09090B;
+    --color-text-muted: #52525B;
+    --color-text-subtle: #71717A;
     --color-accent: #0B7A5E;
-    --color-accent-hover: #08634C;
+    --color-accent-hover: #047857;
     --color-accent-fg: #FFFFFF;
-    --color-accent-soft: #E3F4EE;
+    --color-accent-soft: #ECFDF5;
+    --color-accent-glow: rgba(11, 122, 94, 0.25);
     --color-focus: #0B7A5E;
 
     --color-success: #15803D;
@@ -33,25 +35,27 @@
     --radius-xl: 20px;
     --radius-full: 9999px;
 
-    --duration-fast: 120ms;
-    --duration-base: 200ms;
-    --duration-slow: 320ms;
+    --duration-fast: 150ms;
+    --duration-base: 250ms;
+    --duration-slow: 350ms;
   }
 
   .dark {
-    --color-bg: #0B0B0C;
-    --color-surface: #131316;
-    --color-surface-2: #1B1B1F;
-    --color-border: #27272B;
-    --color-border-strong: #3A3A40;
-    --color-text: #EDEDEF;
-    --color-text-muted: #A0A0A8;
-    --color-text-subtle: #6E6E76;
-    --color-accent: #2DD4A3;
-    --color-accent-hover: #5EE3BB;
-    --color-accent-fg: #04241B;
-    --color-accent-soft: #0F2E25;
-    --color-focus: #2DD4A3;
+    /* Dark Mode: Deep dark & Neon Purple / Indigo accent */
+    --color-bg: #09090D;
+    --color-surface: #111019;
+    --color-surface-2: #191724;
+    --color-border: #262338;
+    --color-border-strong: #3D3958;
+    --color-text: #F4F4F6;
+    --color-text-muted: #9CA3AF;
+    --color-text-subtle: #6B7280;
+    --color-accent: #8B5CF6;
+    --color-accent-hover: #7C3AED;
+    --color-accent-fg: #FFFFFF;
+    --color-accent-soft: rgba(139, 92, 246, 0.16);
+    --color-accent-glow: rgba(139, 92, 246, 0.45);
+    --color-focus: #8B5CF6;
 
     --color-success: #4ADE80;
     --color-success-soft: #10261A;
@@ -80,6 +84,7 @@
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    transition: background-color var(--duration-base) ease, color var(--duration-base) ease;
   }
 
   /* Accessibility Focus Rings */
@@ -104,6 +109,44 @@
 @layer utilities {
   .hero-grid-pattern {
     background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-size: 28px 28px;
   }
+
+  .glow-accent {
+    box-shadow: 0 0 30px -5px var(--color-accent-glow);
+  }
+
+  .glow-accent-sm {
+    box-shadow: 0 0 15px -3px var(--color-accent-glow);
+  }
+
+  .card-interactive {
+    transition: transform var(--duration-base) cubic-bezier(0.16, 1, 0.3, 1),
+      border-color var(--duration-base) ease,
+      box-shadow var(--duration-base) ease;
+  }
+
+  .card-interactive:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 25px -8px var(--color-accent-glow);
+  }
+
+  .card-interactive:active {
+    transform: translateY(-1px);
+  }
+}
+
+/* Keyframes for subtle floating visual effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
 }
