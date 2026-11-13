@@ -67,7 +67,7 @@ export function ScrollProgress() {
           className="group relative flex items-center gap-2 rounded-full border border-border bg-surface/90 backdrop-blur-md px-3 py-1.5 shadow-lg hover:border-accent hover:shadow-accent/20 transition-all duration-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent active:scale-95"
         >
           {/* Circular SVG Mini Progress Ring */}
-          <div className="relative flex h-5 w-5 items-center justify-center">
+          <div className="relative flex h-5 w-5 items-center justify-center shrink-0 aspect-square">
             <svg className="h-5 w-5 -rotate-90 transform" viewBox="0 0 24 24">
               <circle
                 cx="12"
