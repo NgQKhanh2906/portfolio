@@ -61,3 +61,13 @@ Khu vực này dùng để ghi lại các giải pháp kỹ thuật cụ thể k
   - Xây dựng hệ thống `ToastProvider` và hook `useToast` tự viết không dùng thư viện ngoài với 4 biến thể, cấu hình vị trí/thời lượng, tính năng tạm dừng đếm ngược khi hover/focus bàn phím và vùng chứa `aria-live` ('polite' cho info/success, 'assertive' cho error).
   - Triển khai trang `/lab` và `LabShell` tương tác thời gian thực, đồng bộ URL `?c=button|tabs|toast`, khung xem trước code JSX kèm nút copy và tài liệu Accessibility chi tiết.
   - Kết quả kiểm thử: Toàn bộ 51/51 tests pass trên 18 test files, 0 lỗi TypeScript, 0 lỗi ESLint, build production thành công 11/11 trang với First Load JS trang `/lab` chỉ 105 kB (< 150 kB).
+
+### Ghi chú Kỹ thuật ngày 13/11/2026:
+- **Tinh chỉnh UI/UX Toàn diện (The Visual Craft Showcase - PR #7, #8, #9):**
+  - **Bảng màu:** Nền sáng trắng thanh thoát kết hợp màu nhấn Xanh ngọc lục bảo (`#0B7A5E`), Nền tối đen sâu (`#09090D`) kết hợp màu nhấn Tím Neon (`#8B5CF6`) kèm hiệu ứng hào quang mờ (glow).
+  - **Chuyển đổi theme 1 chạm:** Tối ưu hóa `ThemeToggle` thành nút chuyển trực tiếp Light/Dark mode, loại bỏ dropdown và tùy chọn hệ thống không cần thiết.
+  - **Tiến trình cuộn trang (Scroll Progress):** Tích hợp thanh tiến trình 3px cố định đỉnh trang và widget hiển thị phần trăm cuộn trang ở góc dưới bên phải.
+  - **Thành phần BrowserMockup:** Thay thế toàn bộ khung xám placeholder bằng `BrowserMockup` tương tác chân thực hiển thị giao diện của 3 dự án chính (Portfolio, TaskFlow, ShopLite).
+  - **Bố cục Hero & Thẻ Profile:** Khắc phục triệt để lỗi sát viền cho chữ `ONLINE` và `TP. Hồ Chí Minh, Việt Nam` (tăng padding thẻ `p-4 sm:p-5`, bọc trạng thái `ONLINE` trong pill badge đệm an toàn kèm viền ngăn cách).
+  - **Chuẩn hóa Chống méo Hình tròn:** Áp dụng `shrink-0 aspect-square rounded-full` trên toàn bộ các biểu tượng tròn và `items-start` trên danh sách kỹ năng khi ngắt dòng.
+  - **Kết quả kiểm thử tổng hợp:** 66/66 tests pass trên 22 test files, 0 lỗi TypeScript, 0 lỗi ESLint, build production thành công 11/11 trang với First Load JS trang chủ chỉ 107 kB (< 150 kB).
