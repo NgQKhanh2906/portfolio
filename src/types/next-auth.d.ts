@@ -11,8 +11,31 @@ declare module "next-auth" {
   }
 
   interface User {
-    github_id?: number;
+    id?: string;
+    githubId?: number;
     username?: string;
+    isAdmin?: boolean;
+    github_id?: number;
+    is_admin?: boolean;
+  }
+}
+
+declare module "@auth/core/types" {
+  interface Session {
+    user: {
+      id: string;
+      githubId: number;
+      username: string;
+      isAdmin: boolean;
+    } & DefaultSession["user"];
+  }
+
+  interface User {
+    id?: string;
+    githubId?: number;
+    username?: string;
+    isAdmin?: boolean;
+    github_id?: number;
     is_admin?: boolean;
   }
 }
