@@ -52,10 +52,10 @@ const FALLBACK_TELEMETRY: GitHubTelemetryData = {
     {
       id: "ev-4",
       type: "CreateEvent",
-      repoName: "taskflow",
-      message: "create repository for collaborative kanban task management",
+      repoName: "backend-services",
+      message: "init repository for spring boot backend services",
       createdAt: new Date(Date.now() - 86400 * 1000 * 5).toISOString(),
-      url: "https://github.com/NgQKhanh2906/taskflow",
+      url: `https://github.com/${siteConfig.githubUsername}/backend-services`,
     },
   ],
   updatedAt: new Date().toISOString(),

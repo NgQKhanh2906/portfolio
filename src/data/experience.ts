@@ -8,34 +8,33 @@ export type TimelineEntry = {
 
 export const experienceTimeline: TimelineEntry[] = [
   {
-    type: "work",
-    period: "06/2025 - 09/2025",
-    title: "Thực tập sinh Frontend Developer",
-    organization: "Công ty TNHH Phần mềm XYZ",
+    type: "award",
+    period: "2024 - 2025",
+    title: "Học bổng Khuyến khích Học tập",
+    organization: "Học viện Công nghệ Bưu chính Viễn thông (PTIT)",
     highlights: [
-      "Xây dựng 12 màn hình quản trị bằng React và TypeScript theo thiết kế Figma",
-      "Giảm thời gian tải trang danh sách đơn hàng từ 3.2s xuống 1.1s bằng phân trang phía server và memo hóa component",
-      "Viết 40 unit test với Vitest cho các hàm định dạng dữ liệu",
+      "Đạt thành tích học tập xuất sắc trong năm nhất đại học ngành Công nghệ Thông tin",
+      "Rèn luyện tư duy thuật toán, cấu trúc dữ liệu và lập trình hướng đối tượng (OOP) vững chắc",
     ],
   },
   {
     type: "award",
-    period: "11/2024",
-    title: "Giải Nhì Hackathon sinh viên",
-    organization: "Đại học ABC",
+    period: "2024",
+    title: "Chứng chỉ Tin học Văn phòng Quốc tế MOS",
+    organization: "Certiport",
     highlights: [
-      "Xây dựng ứng dụng chia sẻ đồ dùng học tập trong 36 giờ cùng team 4 người",
-      "Phụ trách API và thiết kế database PostgreSQL",
+      "Chứng chỉ chuyên môn Microsoft Office Specialist (MOS) nội dung Excel và PowerPoint",
+      "Thành thạo kỹ năng xử lý bảng tính, trực quan hóa số liệu và trình bày tài liệu kỹ thuật",
     ],
   },
   {
     type: "education",
-    period: "09/2022 - 06/2026",
-    title: "Kỹ sư Kỹ thuật Phần mềm",
-    organization: "Đại học ABC",
+    period: "2024 - 2029",
+    title: "Kỹ sư Công nghệ Thông tin",
+    organization: "Học viện Công nghệ Bưu chính Viễn thông (PTIT)",
     highlights: [
-      "GPA: 3.4 / 4.0",
-      "Đồ án môn học: Hệ thống quản lý thư viện dùng Next.js và PostgreSQL",
+      "Chương trình đào tạo Kỹ sư Công nghệ Thông tin chính quy",
+      "Định hướng chuyên sâu: Lập trình Backend với Java & Spring Boot, Quản trị CSDL và Kiến trúc dịch vụ Web",
     ],
   },
 ];

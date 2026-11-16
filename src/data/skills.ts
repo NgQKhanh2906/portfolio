@@ -11,53 +11,47 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    groupName: "Frontend",
-    skills: [
-      { name: "HTML5 ngữ nghĩa & Accessibility", icon: "html5.svg", proof: "/lab" },
-      { name: "CSS, Responsive Design", icon: "css.svg", proof: "/lab" },
-      { name: "JavaScript (ES2023+)", icon: "javascript.svg" },
-      { name: "TypeScript", icon: "typescript.svg", proof: "/projects/portfolio" },
-      { name: "React", icon: "react.svg", proof: "/lab" },
-      { name: "Next.js (App Router)", icon: "nextjs.svg", proof: "/projects/portfolio" },
-      { name: "Tailwind CSS", icon: "tailwindcss.svg", proof: "/lab" },
-    ],
-  },
-  {
     groupName: "Backend",
     skills: [
-      { name: "Node.js", icon: "nodejs.svg" },
-      { name: "Express", icon: "express.svg", proof: "/projects/shoplite" },
-      { name: "REST API, Server Actions", proof: "/guestbook" },
-      { name: "Authentication (OAuth 2.0, JWT)", proof: "/guestbook" },
+      { name: "Java (OOP, Core Java)", proof: "/projects/backend-services" },
+      { name: "Spring Boot", proof: "/projects/backend-services" },
+      { name: "RESTful API Design", proof: "/projects/backend-services" },
+      { name: "Transaction & Concurrency Control", proof: "/projects/backend-services" },
     ],
   },
   {
     groupName: "Database",
     skills: [
-      { name: "PostgreSQL", icon: "postgresql.svg", proof: "/guestbook" },
-      { name: "Drizzle ORM", icon: "drizzle.svg", proof: "/projects/portfolio" },
-      { name: "Prisma", icon: "prisma.svg", proof: "/projects/taskflow" },
-      { name: "Redis", icon: "redis.svg", proof: "/projects/portfolio" },
-      { name: "MongoDB", icon: "mongodb.svg" },
+      { name: "PostgreSQL", proof: "/projects/portfolio" },
+      { name: "MySQL", proof: "/projects/backend-services" },
+      { name: "Drizzle ORM", proof: "/projects/portfolio" },
+      { name: "Redis Caching", proof: "/projects/portfolio" },
     ],
   },
   {
-    groupName: "DevOps & Tools",
+    groupName: "DevOps & Công cụ",
     skills: [
-      { name: "Git, GitHub", icon: "git.svg" },
-      { name: "GitHub Actions (CI)", icon: "github-actions.svg" },
-      { name: "Docker (cơ bản)", icon: "docker.svg" },
-      { name: "Vercel", icon: "vercel.svg" },
-      { name: "Vitest, Playwright", icon: "vitest.svg" },
-      { name: "Figma (đọc design)", icon: "figma.svg" },
+      { name: "Git, GitHub (Version Control)" },
+      { name: "Docker (Containerization cơ bản)" },
+      { name: "Postman (API Testing & Docs)" },
+      { name: "Vercel & CI/CD" },
     ],
   },
   {
-    groupName: "Kỹ năng mềm",
+    groupName: "Frontend & Web cơ bản",
     skills: [
-      { name: "Đọc tài liệu kỹ thuật tiếng Anh" },
-      { name: "Viết tài liệu kỹ thuật", proof: "/projects/portfolio" },
-      { name: "Làm việc nhóm theo Scrum" },
+      { name: "HTML5 ngữ nghĩa & Accessibility", proof: "/projects/portfolio" },
+      { name: "CSS, Tailwind CSS Responsive", proof: "/projects/portfolio" },
+      { name: "JavaScript / TypeScript", proof: "/projects/portfolio" },
+      { name: "React, Next.js (App Router)", proof: "/projects/portfolio" },
+    ],
+  },
+  {
+    groupName: "Kỹ năng bổ trợ",
+    skills: [
+      { name: "Đọc hiểu tài liệu kỹ thuật tiếng Anh" },
+      { name: "Tin học văn phòng MOS (Excel, PowerPoint)" },
+      { name: "Viết tài liệu kỹ thuật & Case Study", proof: "/projects/portfolio" },
     ],
   },
 ];

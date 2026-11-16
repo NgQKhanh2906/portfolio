@@ -40,7 +40,7 @@ Bài toán đặt ra là xây dựng một trang web cá nhân vừa thể hiệ
 ## Kiến trúc giải pháp
 Ứng dụng được kiến trúc theo mô hình Serverless Jamstack mở rộng:
 - **Presentation Layer:** React Server Components (RSC) kết hợp Next.js 14 App Router để giảm tối đa kích thước bundle client.
-- **Data Mutation Layer:** Server Actions xử lý các thao tác ghi (Guestbook, Contact) với cơ chế Optimistic UI.
+- **API & Telemetry Layer:** Route Handlers cung cấp dữ liệu GitHub Telemetry trực tiếp (ISR) và bộ đếm lượt xem bài viết theo thời gian thực.
 - **Persistence Tier:** Supabase PostgreSQL quản lý dữ liệu qua Drizzle ORM type-safe, Upstash Redis đảm nhiệm caching và rate-limiting.
 
 ## Quyết định kỹ thuật và trade-off

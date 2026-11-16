@@ -112,14 +112,6 @@
     background-size: 28px 28px;
   }
 
-  .glow-accent {
-    box-shadow: 0 0 30px -5px var(--color-accent-glow);
-  }
-
-  .glow-accent-sm {
-    box-shadow: 0 0 15px -3px var(--color-accent-glow);
-  }
-
   .card-interactive {
     transition: transform var(--duration-base) cubic-bezier(0.16, 1, 0.3, 1),
       border-color var(--duration-base) ease,

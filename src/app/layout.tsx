@@ -4,7 +4,6 @@ import "./globals.css";
 import { siteConfig } from "@/data/site-config";
 import { ThemeScript } from "@/components/theme/theme-script";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { ToastProvider } from "@/components/ui/toast";
 import { SkipLink } from "@/components/layout/skip-link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -88,17 +87,15 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased bg-bg text-text selection:bg-accent/20 selection:text-accent">
         <ThemeProvider>
-          <ToastProvider>
-            <ScrollProgress />
-            <SkipLink />
-            <div className="flex min-h-screen flex-col">
-              <SiteHeader />
-              <main id="main-content" className="flex-1">
-                {children}
-              </main>
-              <SiteFooter />
-            </div>
-          </ToastProvider>
+          <ScrollProgress />
+          <SkipLink />
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
         </ThemeProvider>
       </body>
     </html>

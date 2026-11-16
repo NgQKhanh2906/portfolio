@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Eye } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
+import { cn, formatNumber } from "@/lib/utils";
 
 export interface ViewCounterProps {
   slug: string;
@@ -67,7 +67,7 @@ export function ViewCounter({ slug, className }: ViewCounterProps) {
       aria-label={`${views} lượt xem`}
     >
       <Eye className="h-3.5 w-3.5 text-accent shrink-0" />
-      <span>{new Intl.NumberFormat("vi-VN").format(views)} lượt xem</span>
+      <span>{formatNumber(views)} lượt xem</span>
     </span>
   );
 }

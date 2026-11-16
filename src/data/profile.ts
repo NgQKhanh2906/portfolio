@@ -5,47 +5,36 @@ export interface ProfileStat {
   subtext: string;
 }
 
-export interface QuickFact {
-  icon: string;
-  label: string;
-  value: string;
-}
-
 export const profile = {
   about: [
-    "Mình là sinh viên năm cuối ngành Kỹ thuật Phần mềm, tập trung vào phát triển web full-stack với React, Next.js và PostgreSQL.",
-    "Mình thích biến một yêu cầu mơ hồ thành sản phẩm chạy được: bắt đầu từ việc hiểu bài toán, thiết kế dữ liệu, rồi mới viết giao diện.",
-    "Trang web bạn đang xem cũng là một dự án: nó có database, xác thực GitHub, rate limit và CI/CD. Bạn có thể thử ngay ở Guestbook hoặc nhấn Ctrl + K.",
+    "Mình là sinh viên ngành Công nghệ Thông tin tại Học viện Công nghệ Bưu chính Viễn thông (PTIT), định hướng phát triển Backend và Web Application.",
+    "Thế mạnh của mình tập trung vào Java, Spring Boot, thiết kế cơ sở dữ liệu quan hệ (PostgreSQL, MySQL) và xây dựng RESTful API kết hợp đóng gói Docker.",
+    "Trang web bạn đang xem là dự án thực hành kiểm chứng năng lực Full-stack: kiến trúc Next.js App Router, tích hợp GitHub Telemetry, bộ đếm lượt xem Redis và kiểm thử tự động 100%.",
   ],
   stats: [
     {
       icon: "Calendar",
-      value: "4+",
-      label: "Năm học tập CNTT",
-      subtext: "Nền tảng kiến trúc phần mềm và hệ thống thông tin vững chắc",
+      value: "2024+",
+      label: "Sinh viên CNTT (PTIT)",
+      subtext: "Đạt Học bổng Khuyến khích Học tập năm nhất đại học",
     },
     {
       icon: "FolderGit2",
-      value: "10+",
-      label: "Dự án hoàn thành",
-      subtext: "Bao gồm 3 Case Studies kỹ thuật chuyên sâu và sản phẩm thực tế",
+      value: "2+",
+      label: "Sản phẩm Web & Backend",
+      subtext: "Bao gồm Portfolio Full-stack và hệ thống dịch vụ Backend Java",
     },
     {
       icon: "CheckCircle2",
       value: "100%",
       label: "Chuẩn WCAG 2.1 AA & Test Pass",
-      subtext: "Test coverage toàn diện và khả năng tiếp cận tối ưu",
+      subtext: "Kiểm thử tự động toàn diện với Vitest & Testing Library",
     },
     {
       icon: "Github",
-      value: "300+",
-      label: "Đóng góp GitHub",
-      subtext: "Hoạt động đóng góp và duy trì mã nguồn liên tục trên Git",
+      value: "Git",
+      label: "Quản lý mã nguồn chuẩn",
+      subtext: "Quy trình Git Flow, Conventional Commits và kiểm thử với Postman",
     },
-  ],
-  quickFacts: [
-    { icon: "MapPin", label: "Địa điểm", value: "TP. Hồ Chí Minh" },
-    { icon: "GraduationCap", label: "Học vấn", value: "Kỹ thuật Phần mềm - Đại học ABC (2022 - 2026)" },
-    { icon: "Languages", label: "Ngôn ngữ", value: "Tiếng Việt (bản ngữ), Tiếng Anh (TOEIC 750)" },
   ],
 } as const;

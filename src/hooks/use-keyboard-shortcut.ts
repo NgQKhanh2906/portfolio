@@ -13,10 +13,11 @@ type KeyCombo = {
 export function useKeyboardShortcut(
   combo: KeyCombo,
   callback: (event: KeyboardEvent) => void,
-  target: Window | HTMLElement = typeof window !== "undefined" ? window : ({} as any),
+  target?: Window | HTMLElement,
 ): void {
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const targetElement = target ?? window;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       const isKeyMatch = event.key.toLowerCase() === combo.key.toLowerCase();
@@ -29,7 +30,7 @@ export function useKeyboardShortcut(
       }
     };
 
-    target.addEventListener("keydown", handleKeyDown as EventListener);
-    return () => target.removeEventListener("keydown", handleKeyDown as EventListener);
+    targetElement.addEventListener("keydown", handleKeyDown as EventListener);
+    return () => targetElement.removeEventListener("keydown", handleKeyDown as EventListener);
   }, [combo, callback, target]);
 }

@@ -69,35 +69,18 @@ describe("ProjectCard Component", () => {
     expect(screen.getByText(/runtime/i)).toBeInTheDocument();
   });
 
-  it("renders Kanban board preview with columns for taskflow project", () => {
-    const taskflowProject: ProjectFrontmatter = {
+  it("renders backend API architecture preview for backend-services project", () => {
+    const backendProject: ProjectFrontmatter = {
       ...mockProject,
-      title: "TaskFlow - Kanban Board",
-      slug: "taskflow",
-      links: { demo: "https://taskflow.dev" },
+      title: "Hệ thống Quản lý Bán hàng & Dịch vụ Backend",
+      slug: "backend-services",
+      links: { source: "https://github.com/NgQKhanh2906/backend-services" },
     };
-    render(<ProjectCard project={taskflowProject} />);
-    expect(screen.getByText("taskflow.dev/board")).toBeInTheDocument();
-    expect(screen.getByTestId("mockup-taskflow")).toBeInTheDocument();
-    expect(screen.getByText("TaskFlow Board")).toBeInTheDocument();
-    expect(screen.getByText("To Do")).toBeInTheDocument();
-    expect(screen.getByText("In Progress")).toBeInTheDocument();
-    expect(screen.getByText("Done")).toBeInTheDocument();
-  });
-
-  it("renders storefront UI preview with product cards for shoplite project", () => {
-    const shopliteProject: ProjectFrontmatter = {
-      ...mockProject,
-      title: "ShopLite - Micro Storefront",
-      slug: "shoplite",
-      links: { demo: "https://shoplite.store" },
-    };
-    render(<ProjectCard project={shopliteProject} />);
-    expect(screen.getByText("shoplite.store")).toBeInTheDocument();
-    expect(screen.getByTestId("mockup-shoplite")).toBeInTheDocument();
-    expect(screen.getByText("SHOPLITE")).toBeInTheDocument();
-    expect(screen.getByText("Cart (2)")).toBeInTheDocument();
-    expect(screen.getByText("Mech Key 75%")).toBeInTheDocument();
-    expect(screen.getByText("$129")).toBeInTheDocument();
+    render(<ProjectCard project={backendProject} />);
+    expect(screen.getByText("api.nqkhanh.dev")).toBeInTheDocument();
+    expect(screen.getByTestId("mockup-backend-services")).toBeInTheDocument();
+    expect(screen.getByText("Spring Boot REST API")).toBeInTheDocument();
+    expect(screen.getByText("POST /api/v1/orders")).toBeInTheDocument();
+    expect(screen.getByText("ACID Transaction")).toBeInTheDocument();
   });
 });
