@@ -1,3 +1,4 @@
+import "server-only";
 import crypto from "node:crypto";
 
 const VIEW_SALT = process.env.VIEW_SALT || "portfolio-salt-secure-dev";

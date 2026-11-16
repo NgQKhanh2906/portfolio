@@ -97,6 +97,10 @@ Nội dung.
     expect(portfolioProject?.toc.length).toBeGreaterThanOrEqual(6);
 
     const allProjects = await getAllProjects();
-    expect(allProjects.length).toBeGreaterThanOrEqual(3);
+    expect(allProjects.length).toBeGreaterThanOrEqual(2);
+
+    const backendProject = await getProjectBySlug("backend-services");
+    expect(backendProject).not.toBeNull();
+    expect(backendProject?.toc.length).toBeGreaterThanOrEqual(6);
   });
 });

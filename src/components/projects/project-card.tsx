@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Github, Laptop, Layers, Cpu } from "lucide-react";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { type ProjectFrontmatter } from "@/lib/validations/project-frontmatter";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,10 +18,8 @@ export function getProjectMockupUrl(slug: string, demoLink?: string): string {
   switch (slug) {
     case "portfolio":
       return "nqkhanh.dev";
-    case "taskflow":
-      return "taskflow.dev/board";
-    case "shoplite":
-      return "shoplite.store";
+    case "backend-services":
+      return "api.nqkhanh.dev";
     default:
       if (demoLink) {
         try {
@@ -127,157 +125,58 @@ export function PortfolioMockupViewport() {
 }
 
 /**
- * TaskFlow Preview: Kanban board with columns (To Do, In Progress, Done)
+ * Backend Services Preview: Spring Boot REST API + MySQL ACID Transaction + Docker
  */
-export function TaskFlowMockupViewport() {
+export function BackendServicesMockupViewport() {
   return (
     <div
-      data-testid="mockup-taskflow"
-      className="relative flex h-full w-full flex-col justify-between bg-[#0C0D14] text-[#E0E2EC] p-2 sm:p-2.5 font-sans select-none overflow-hidden"
+      data-testid="mockup-backend-services"
+      className="relative flex h-full w-full flex-col justify-between bg-[#0C0D14] text-[#E0E2EC] p-2 sm:p-2.5 font-mono select-none overflow-hidden"
     >
-      {/* Board Mini Header */}
+      {/* Service Header */}
       <div className="flex items-center justify-between pb-1 border-b border-[#1F2232] text-[8px]">
         <div className="flex items-center gap-1.5">
-          <span className="font-mono font-bold text-white text-[9px] tracking-tight">TaskFlow Board</span>
-          <span className="bg-accent/15 text-accent border border-accent/30 font-mono text-[7px] px-1 py-0.2 rounded-full">
-            Sprint 14
+          <span className="font-bold text-white text-[9px] tracking-tight">Spring Boot REST API</span>
+          <span className="bg-accent/15 text-accent border border-accent/30 text-[7px] px-1 py-0.2 rounded-full">
+            Java 17
           </span>
         </div>
-        <div className="flex items-center gap-1">
-          <div className="flex -space-x-1">
-            <span className="h-3 w-3 shrink-0 aspect-square rounded-full bg-indigo-500 border border-[#0C0D14] text-[6px] text-white flex items-center justify-center font-bold">K</span>
-            <span className="h-3 w-3 shrink-0 aspect-square rounded-full bg-emerald-500 border border-[#0C0D14] text-[6px] text-white flex items-center justify-center font-bold">T</span>
-            <span className="h-3 w-3 shrink-0 aspect-square rounded-full bg-amber-500 border border-[#0C0D14] text-[6px] text-white flex items-center justify-center font-bold">A</span>
+        <span className="text-[7px] text-emerald-400 font-semibold">201 CREATED</span>
+      </div>
+
+      {/* API Endpoint & Transaction Pipeline */}
+      <div className="grid grid-cols-12 gap-1.5 pt-1 h-[calc(100%-36px)] overflow-hidden">
+        <div className="col-span-7 bg-[#121420] border border-[#1F2232] rounded p-1.5 flex flex-col justify-between overflow-hidden">
+          <div className="flex items-center justify-between text-[7.5px] text-accent">
+            <span className="font-bold">POST /api/v1/orders</span>
+            <span className="text-[#8C92A4]">38ms</span>
+          </div>
+          <div className="text-[7px] text-[#A0A5B5] space-y-0.5 leading-tight">
+            <div className="truncate">1. @Valid OrderRequestDTO</div>
+            <div className="truncate text-emerald-400">2. SELECT ... FOR UPDATE</div>
+            <div className="truncate">3. Workflow status: ASSIGNED</div>
+          </div>
+        </div>
+
+        <div className="col-span-5 bg-[#121420] border border-accent/30 rounded p-1.5 flex flex-col justify-between overflow-hidden">
+          <span className="text-[7.5px] font-semibold text-white truncate">ACID Transaction</span>
+          <div className="space-y-0.5 text-[6.5px] text-[#A0A5B5]">
+            <div className="flex items-center justify-between">
+              <span>MySQL 3NF</span>
+              <span className="h-1.5 w-1.5 shrink-0 aspect-square rounded-full bg-emerald-400" />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Docker</span>
+              <span className="h-1.5 w-1.5 shrink-0 aspect-square rounded-full bg-accent" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* 3 Kanban Columns */}
-      <div className="grid grid-cols-3 gap-1 pt-1 h-[calc(100%-18px)] overflow-hidden">
-        {/* Column 1: To Do */}
-        <div className="bg-[#121420] border border-[#1F2232] rounded p-1 flex flex-col gap-1 overflow-hidden">
-          <div className="flex items-center justify-between text-[7.5px] font-mono text-[#8C92A4] pb-0.5 border-b border-[#1F2232]">
-            <span className="font-semibold uppercase">To Do</span>
-            <span className="bg-[#1B1E30] text-[#A0A5B5] px-1 rounded-full text-[6.5px]">3</span>
-          </div>
-          <div className="bg-[#181B2B] border border-[#272B40] rounded p-1 flex flex-col gap-0.5 shadow-xs">
-            <span className="text-[7.5px] font-medium text-white truncate">OAuth GitHub Flow</span>
-            <div className="flex items-center justify-between mt-0.5">
-              <span className="text-[6.5px] font-mono bg-indigo-500/20 text-indigo-300 px-1 rounded">Auth</span>
-              <span className="h-1 w-1 shrink-0 aspect-square rounded-full bg-amber-400" />
-            </div>
-          </div>
-          <div className="bg-[#181B2B] border border-[#272B40] rounded p-1 flex flex-col gap-0.5 opacity-70">
-            <span className="text-[7.5px] font-medium text-[#C0C4D0] truncate">Drizzle Schema</span>
-          </div>
-        </div>
-
-        {/* Column 2: In Progress */}
-        <div className="bg-[#121420] border border-accent/30 rounded p-1 flex flex-col gap-1 overflow-hidden">
-          <div className="flex items-center justify-between text-[7.5px] font-mono text-accent pb-0.5 border-b border-accent/20">
-            <span className="font-semibold uppercase">In Progress</span>
-            <span className="bg-accent/20 text-accent px-1 rounded-full text-[6.5px] font-bold">2</span>
-          </div>
-          <div className="bg-[#1A1D30] border border-accent/50 rounded p-1 flex flex-col gap-0.5 shadow-xs shadow-accent/10">
-            <span className="text-[7.5px] font-medium text-white truncate">Kanban Drag & Drop</span>
-            <div className="w-full bg-[#272B40] h-0.5 rounded-full mt-0.5 overflow-hidden">
-              <div className="bg-accent h-full w-4/5 rounded-full" />
-            </div>
-            <div className="flex items-center justify-between mt-0.5">
-              <span className="text-[6.5px] font-mono bg-accent/20 text-accent px-1 rounded">UI Craft</span>
-              <span className="h-1 w-1 shrink-0 aspect-square rounded-full bg-accent animate-pulse" />
-            </div>
-          </div>
-        </div>
-
-        {/* Column 3: Done */}
-        <div className="bg-[#121420] border border-[#1F2232] rounded p-1 flex flex-col gap-1 overflow-hidden">
-          <div className="flex items-center justify-between text-[7.5px] font-mono text-emerald-400 pb-0.5 border-b border-[#1F2232]">
-            <span className="font-semibold uppercase">Done</span>
-            <span className="bg-emerald-500/20 text-emerald-400 px-1 rounded-full text-[6.5px] font-bold">4</span>
-          </div>
-          <div className="bg-[#181B2B] border border-emerald-500/20 rounded p-1 flex flex-col gap-0.5">
-            <span className="text-[7.5px] font-medium text-white truncate">PostgreSQL Setup</span>
-            <div className="flex items-center justify-between mt-0.5">
-              <span className="text-[6.5px] font-mono bg-emerald-500/20 text-emerald-300 px-1 rounded">Passed</span>
-              <span className="h-1 w-1 shrink-0 aspect-square rounded-full bg-emerald-400" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/**
- * ShopLite Preview: Storefront UI with product cards
- */
-export function ShopLiteMockupViewport() {
-  return (
-    <div
-      data-testid="mockup-shoplite"
-      className="relative flex h-full w-full flex-col justify-between bg-[#0B0C12] text-[#E0E2EC] p-2 sm:p-2.5 font-sans select-none overflow-hidden"
-    >
-      {/* Storefront Mini Navbar */}
-      <div className="flex items-center justify-between pb-1 border-b border-[#1F2230] text-[8px]">
-        <div className="flex items-center gap-1.5">
-          <span className="font-mono font-bold text-accent text-[9px] tracking-tight">SHOPLITE</span>
-          <span className="text-[7px] text-[#5A6075] font-mono hidden xs:inline">Storefront</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="bg-[#161824] border border-[#25283A] rounded px-1.5 py-0.5 text-[6.5px] text-[#80869B] font-mono flex items-center gap-1">
-            <span>Search...</span>
-          </div>
-          <div className="flex items-center gap-1 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 rounded-full px-1.5 py-0.2 text-[7px] font-mono">
-            <span className="h-1 w-1 shrink-0 aspect-square rounded-full bg-emerald-400" />
-            <span>Cart (2)</span>
-          </div>
-        </div>
-      </div>
-
-      {/* 3 Product Cards Grid */}
-      <div className="grid grid-cols-3 gap-1 pt-1 h-[calc(100%-18px)] overflow-hidden">
-        {/* Product Card 1 */}
-        <div className="bg-[#131522] border border-[#23273A] rounded p-1 flex flex-col justify-between">
-          <div className="bg-[#1B1E30] rounded border border-[#2C3148] h-7 flex items-center justify-center text-accent/80">
-            <Laptop className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          </div>
-          <div className="mt-0.5 flex flex-col">
-            <span className="text-[7px] font-semibold text-white truncate">Mech Key 75%</span>
-            <span className="text-[6.5px] font-mono text-accent font-bold">$129</span>
-          </div>
-          <div className="mt-0.5 w-full bg-accent/20 text-accent border border-accent/30 rounded py-0.2 text-[6px] font-medium font-mono text-center">
-            Add
-          </div>
-        </div>
-
-        {/* Product Card 2 */}
-        <div className="bg-[#131522] border border-[#23273A] rounded p-1 flex flex-col justify-between">
-          <div className="bg-[#1B1E30] rounded border border-[#2C3148] h-7 flex items-center justify-center text-accent/80">
-            <Layers className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          </div>
-          <div className="mt-0.5 flex flex-col">
-            <span className="text-[7px] font-semibold text-white truncate">Desk Mat Pro</span>
-            <span className="text-[6.5px] font-mono text-accent font-bold">$35</span>
-          </div>
-          <div className="mt-0.5 w-full bg-accent/20 text-accent border border-accent/30 rounded py-0.2 text-[6px] font-medium font-mono text-center">
-            Add
-          </div>
-        </div>
-
-        {/* Product Card 3 */}
-        <div className="bg-[#131522] border border-[#23273A] rounded p-1 flex flex-col justify-between">
-          <div className="bg-[#1B1E30] rounded border border-[#2C3148] h-7 flex items-center justify-center text-accent/80">
-            <Cpu className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          </div>
-          <div className="mt-0.5 flex flex-col">
-            <span className="text-[7px] font-semibold text-white truncate">USB-C Hub</span>
-            <span className="text-[6.5px] font-mono text-accent font-bold">$59</span>
-          </div>
-          <div className="mt-0.5 w-full bg-accent/20 text-accent border border-accent/30 rounded py-0.2 text-[6px] font-medium font-mono text-center">
-            Add
-          </div>
-        </div>
+      {/* Status Footer */}
+      <div className="h-4 -mx-2 -mb-2 sm:-mx-2.5 sm:-mb-2.5 px-2 bg-[#08090D] border-t border-[#1F222E] flex items-center justify-between text-[7.5px] text-[#A0A5B5]">
+        <span>Postman: 15/15 Passed</span>
+        <span className="text-accent font-semibold">Pessimistic Lock</span>
       </div>
     </div>
   );
@@ -320,10 +219,8 @@ export function ProjectMockupViewport({ slug, title }: { slug: string; title?: s
   switch (slug) {
     case "portfolio":
       return <PortfolioMockupViewport />;
-    case "taskflow":
-      return <TaskFlowMockupViewport />;
-    case "shoplite":
-      return <ShopLiteMockupViewport />;
+    case "backend-services":
+      return <BackendServicesMockupViewport />;
     default:
       return <DefaultMockupViewport title={title} />;
   }

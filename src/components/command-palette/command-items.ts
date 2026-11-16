@@ -2,8 +2,6 @@ import { siteConfig } from "@/data/site-config";
 import {
   Home,
   FolderGit2,
-  FlaskConical,
-  BookOpen,
   Mail,
   Sun,
   Moon,
@@ -49,28 +47,6 @@ export const commandItems: CommandAction[] = [
     group: "navigation",
     perform: ({ router, close }) => {
       router.push("/projects");
-      close();
-    },
-  },
-  {
-    id: "nav-lab",
-    title: "Component Lab",
-    keywords: ["lab", "component", "ui", "playground", "thu nghiem"],
-    icon: FlaskConical,
-    group: "navigation",
-    perform: ({ router, close }) => {
-      router.push("/lab");
-      close();
-    },
-  },
-  {
-    id: "nav-guestbook",
-    title: "Sổ lưu niệm (Guestbook)",
-    keywords: ["guestbook", "so luu niem", "loi nhan"],
-    icon: BookOpen,
-    group: "navigation",
-    perform: ({ router, close }) => {
-      router.push("/guestbook");
       close();
     },
   },

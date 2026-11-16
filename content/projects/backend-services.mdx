@@ -1,0 +1,62 @@
+---
+title: "Hệ thống Quản lý Bán hàng & Dịch vụ Backend"
+slug: "backend-services"
+summary: "Hệ thống backend tích hợp xử lý đơn hàng, điều phối nhiệm vụ và quản trị dữ liệu xây dựng bằng Java, Spring Boot, MySQL và kiểm thử tự động với Postman."
+coverImage: "/images/projects/backend-services-cover.png"
+year: 2025
+role: "Backend Developer"
+teamSize: "1 người"
+period: "09/2024 - 12/2024"
+tech:
+  - java
+  - springboot
+  - mysql
+  - docker
+  - git
+  - postman
+featured: true
+published: true
+order: 2
+links:
+  source: "https://github.com/NgQKhanh2906/backend-services"
+---
+
+## Bối cảnh và bài toán
+Trong các hệ thống thương mại điện tử và dịch vụ quản lý công việc, việc xử lý luồng đơn hàng kết hợp với điều phối tác vụ nội bộ thường bị phân mảnh nếu thiết kế rời rạc. Một bên là quy trình bán hàng (Storefront) cần lưu trữ giỏ hàng, tính toán chi phí và sinh mã đơn; một bên là quy trình quản lý (Workflow/Kanban) cần cập nhật trạng thái đơn hàng và phân công nhân sự xử lý.
+Bài toán đặt ra là xây dựng một kiến trúc Backend RESTful API hoàn chỉnh và tinh gọn, kết hợp quy trình quản lý đơn hàng bán lẻ và quy trình điều phối trạng thái công việc trên một nền tảng thống nhất, đảm bảo tính toàn vẹn dữ liệu và độ trễ phản hồi thấp.
+
+## Mục tiêu và ràng buộc
+- **Mục tiêu:**
+  - Cung cấp đầy đủ các endpoint CRUD chuẩn RESTful cho danh mục sản phẩm, đơn đặt hàng và trạng thái luồng công việc.
+  - Xử lý giao dịch (Transaction Management) đảm bảo tính ACID khi người dùng đặt hàng: trừ tồn kho, tạo bản ghi đơn hàng và phát sinh tác vụ xử lý đồng thời.
+  - Chuẩn hóa mã phản hồi HTTP (200, 201, 400, 401, 404, 500) kèm cấu trúc lỗi chi tiết (Timestamp, Error Code, Validation Message).
+- **Ràng buộc:**
+  - Phát triển bằng Java và hệ sinh thái Spring Boot.
+  - Cơ sở dữ liệu quan hệ MySQL chuẩn hóa 3NF, không cho phép rò rỉ dữ liệu hoặc cập nhật thiếu nhất quán khi nhiều tác vụ chạy song song.
+  - Đóng gói toàn bộ ứng dụng và cơ sở dữ liệu qua Docker Compose để có thể khởi chạy môi trường tức thì trong một câu lệnh.
+
+## Kiến trúc giải pháp
+- **Tầng Controller:** Tiếp nhận HTTP Request, trích xuất DTO (Data Transfer Object) và kiểm tra tính hợp lệ của dữ liệu đầu vào thông qua Hibernate Validator (`@Valid`, `@NotNull`, `@NotBlank`, `@Min`).
+- **Tầng Service:** Hiện thực hóa toàn bộ logic nghiệp vụ, xử lý luồng nghiệp vụ đơn hàng, kiểm tra số lượng tồn kho và kích hoạt trạng thái công việc tương ứng. Quản lý tính toàn vẹn giao dịch với `@Transactional`.
+- **Tầng Repository:** Tương tác với cơ sở dữ liệu MySQL thông qua Spring Data JPA / Hibernate, tối ưu hóa câu lệnh truy vấn, sử dụng các chỉ mục (Index) trên các khóa ngoại và trường tìm kiếm thường xuyên.
+- **Tầng Kiểm thử & Tài liệu:** Sử dụng Postman để xây dựng bộ Test Collection tự động kiểm tra tính đúng đắn của toàn bộ endpoint trước khi đóng gói.
+
+## Quyết định kỹ thuật và trade-off
+- **Lựa chọn Monolith Module hóa thay vì Microservices:**
+  - *Lý do:* Với quy mô dự án và mục tiêu tối ưu độ trễ, việc chia nhỏ thành Microservices sẽ làm tăng độ phức tạp không cần thiết (network latency, distributed transaction). Kiến trúc Monolith module hóa cho phép kiểm soát giao dịch nội bộ dễ dàng, triển khai nhanh và tiết kiệm tài nguyên máy chủ.
+- **Sử dụng DTO độc lập với JPA Entity:**
+  - *Trade-off:* Tốn thêm mã nguồn để map dữ liệu giữa DTO và Entity.
+  - *Lợi ích mang lại:* Ngăn chặn triệt để hiện tượng rò rỉ cấu trúc bảng database ra ngoài API, đồng thời triệt tiêu nguy cơ vòng lặp đệ quy vô tận khi serialize JSON trên các quan hệ hai chiều (`@OneToMany` / `@ManyToOne`).
+
+## Thách thức và cách giải quyết
+- **Vấn đề tranh chấp dữ liệu khi nhiều đơn hàng đặt cùng thời điểm (Race Condition):**
+  - *Hiện tượng:* Nếu hai người dùng cùng đặt món hàng cuối cùng trong kho tại cùng một thời điểm, cả hai luồng đều đọc số lượng tồn kho là 1 và tiến hành trừ kho dẫn đến tồn kho bị âm (-1).
+  - *Giải pháp:* Áp dụng cơ chế khóa bi quan (Pessimistic Locking - `SELECT ... FOR UPDATE`) trên bản ghi kho hàng trong phạm vi một `@Transactional`, đảm bảo luồng đặt hàng thứ hai bắt buộc phải chờ luồng thứ nhất hoàn tất giao dịch trước khi kiểm tra lại số lượng thực tế.
+- **Xử lý ngoại lệ tập trung (Global Exception Handling):**
+  - Áp dụng `@RestControllerAdvice` kết hợp `@ExceptionHandler` để bắt toàn bộ các ngoại lệ (như `EntityNotFoundException`, `MethodArgumentNotValidException`, `InsufficientStockException`) và trả về JSON chuẩn đồng nhất, không làm lộ stack trace nội bộ của server.
+
+## Kết quả và bài học
+- Xây dựng thành công hệ thống Backend với hơn 15 endpoint RESTful hoàn chỉnh, bao phủ đầy đủ nghiệp vụ quản lý sản phẩm, đơn hàng và bảng điều phối công việc.
+- Toàn bộ các kịch bản kiểm thử API trên Postman đều vượt qua 100%, thời gian xử lý trung bình mỗi request dưới 50ms trong môi trường cục bộ.
+- Đóng gói ứng dụng thành công bằng Docker container, kết nối trơn tru với MySQL service thông qua Docker Compose network.
+- **Bài học kinh nghiệm:** Hiểu sâu sắc về vòng đời của một Spring Bean, tầm quan trọng của việc cô lập Transaction và cách thiết kế API thân thiện, dễ tích hợp cho các ứng dụng Frontend.
