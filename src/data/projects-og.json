@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "portfolio",
+    "title": "Portfolio Web Application",
+    "year": 2026,
+    "role": "Full-stack Developer",
+    "summary": "Portfolio cá nhân full-stack chuẩn Engineering Notebook với Next.js 14, Drizzle ORM, Supabase và đo lường hiệu năng thực tế.",
+    "tech": [
+      "nextjs",
+      "react",
+      "typescript",
+      "tailwindcss",
+      "postgresql",
+      "drizzle",
+      "redis",
+      "vercel"
+    ]
+  },
+  {
+    "slug": "backend-services",
+    "title": "Hệ thống Quản lý Bán hàng & Dịch vụ Backend",
+    "year": 2025,
+    "role": "Backend Developer",
+    "summary": "Hệ thống backend tích hợp xử lý đơn hàng, điều phối nhiệm vụ và quản trị dữ liệu xây dựng bằng Java, Spring Boot, MySQL và kiểm thử tự động với Postman.",
+    "tech": [
+      "java",
+      "springboot",
+      "mysql",
+      "docker",
+      "git",
+      "postman"
+    ]
+  }
+]

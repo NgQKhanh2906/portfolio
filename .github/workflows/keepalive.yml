@@ -1,0 +1,19 @@
+name: Supabase Keepalive Ping
+
+on:
+  schedule:
+    # Run at 00:00 UTC on Monday, Wednesday, and Saturday to prevent free-tier pause
+    - cron: "0 0 * * 1,3,6"
+  workflow_dispatch:
+
+jobs:
+  ping-keepalive:
+    name: Ping Database Endpoint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send HTTP Ping Request
+        run: |
+          BASE_URL="${{ vars.SITE_URL || 'https://nqkhanh.dev' }}"
+          TARGET_URL="${BASE_URL%/}/api/views/portfolio"
+          curl -f -s -o /dev/null -w "HTTP Response Code: %{http_code}\n" "$TARGET_URL" || exit 1
