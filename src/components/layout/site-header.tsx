@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Menu, ArrowUpRight, Code2 } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
@@ -9,15 +10,34 @@ import { Container } from "./container";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { MobileNav } from "./mobile-nav";
 import { CommandTrigger } from "@/components/command-palette/command-trigger";
-import { CommandPalette } from "@/components/command-palette/command-palette";
+import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+const CommandPalette = dynamic(
+  () =>
+    import("@/components/command-palette/command-palette").then(
+      (mod) => mod.CommandPalette,
+    ),
+  { ssr: false },
+);
+
+const COMMAND_PALETTE_SHORTCUT = { key: "k", ctrlKey: true };
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [hasOpenedPalette, setHasOpenedPalette] = useState(false);
   const pathname = usePathname();
+
+  const handleToggleCommandPalette = useCallback((event: KeyboardEvent) => {
+    event.preventDefault();
+    setHasOpenedPalette(true);
+    setIsCommandPaletteOpen((prev) => !prev);
+  }, []);
+
+  useKeyboardShortcut(COMMAND_PALETTE_SHORTCUT, handleToggleCommandPalette);
 
   useEffect(() => {
     function handleScroll() {
@@ -80,7 +100,10 @@ export function SiteHeader() {
             <div className="flex items-center gap-2">
               {/* Command Palette Trigger */}
               <CommandTrigger
-                onClick={() => setIsCommandPaletteOpen(true)}
+                onClick={() => {
+                  setHasOpenedPalette(true);
+                  setIsCommandPaletteOpen(true);
+                }}
                 className="hidden sm:flex"
               />
 
@@ -119,11 +142,13 @@ export function SiteHeader() {
         />
       </header>
 
-      {/* Global Command Palette */}
-      <CommandPalette
-        open={isCommandPaletteOpen}
-        onOpenChange={setIsCommandPaletteOpen}
-      />
+      {/* Global Command Palette (lazy-loaded on first trigger) */}
+      {(hasOpenedPalette || isCommandPaletteOpen) && (
+        <CommandPalette
+          open={isCommandPaletteOpen}
+          onOpenChange={setIsCommandPaletteOpen}
+        />
+      )}
     </>
   );
 }

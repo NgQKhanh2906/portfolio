@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "tsx scripts/generate-projects-og.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --no-cache",
@@ -13,6 +14,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:cdp": "node scripts/e2e-verify.mjs",
     "validate:content": "tsx scripts/validate-content.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
